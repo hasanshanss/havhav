@@ -1,0 +1,107 @@
+﻿@using HavhavAz.Models.MessageModels
+@using static HavhavAz.Models.UserModels.User; 
+
+@model ChatMessagePublisher
+
+
+@{
+    ViewBag.Title = SharedLocalizer["Titles.Chat"];
+
+    string Username = Context.GetCurrentUsername() ?? "";
+    Int32 UserId = Context.GetCurrentUserId();
+    Roles role = Context.GetCurrentUserRole();
+
+    bool isAdmin = role == Roles.Admin;
+}
+
+
+@section Content{
+    @*Comment Section*@
+    <div class="container mt-2 m-auto">
+        <div class="row">
+            <div class="col-md-12 box comment_block">
+                <div class="new_comment">
+                    <ul class="user_comment">
+                        @if (_cmpList != null && _cmpList.Count > 0)
+                        {
+                            @foreach (ChatMessagePublisher cmp in _cmpList)
+                            {
+
+                                string Publisher = cmp.Publisher;
+
+                                <li>
+                                    <div class="row @(Username.Equals(Publisher) ? "flex-row-reverse" : "")">
+
+                                        <div class="col-3 col-sm-2 col-md-2 col-lg-1 mt-4">
+                                            <div class="user_avatar">
+                                                <img alt="Azərbaycanda heyvansevərlər üçün ilk və tək sosial şəbəkə" src="@Url.Content($"/images/{GetMainPic("users", Publisher)}")" width="50" height="50">
+                                            </div>
+
+                                        </div>
+                                        <div class="col-9 col-sm-10 col-md-11">
+
+                                            <div class="comment_body">
+                                                <div>
+                                                    <a href="/Account/Index/@Publisher" class="orange">
+                                                        <span style="font-size:13px; word-break:break-all;">@Publisher</span>
+                                                    </a>
+                                                </div>
+                                                <p class="wrappable">
+                                                    @cmp.Content
+                                                </p>
+                                                <div class="row comment_toolbar">
+                                                    <div class="col-12 col-md-12">
+                                                        <div class="comment_tools text-right">
+                                                            <ul>
+                                                                <li>
+                                                                    <i class="fa fa-clock-o icon"></i> @cmp.Date.ToString("HH:mm")
+                                                                </li>
+                                                                <li>
+                                                                    <i class="fa fa-calendar icon mr-1"></i>@cmp.Date.ToString("dd.MM.yyyy")
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </li>
+                            }
+
+
+                        }
+                        else
+                        {
+                            <li id="nobodyText">
+                                <h5 class="fb-title text-center">@SharedLocalizer["Chat.First"]</h5>
+                            </li>
+                        }
+                    </ul>
+                    <hr style="background-color: orange;" />
+                    <div class="create_new_comment">
+                        <div class="row">
+                            <div class="col-3 col-sm-2 col-md-2 col-lg-1 avatar_box">
+                                <img alt="Azərbaycanda heyvansevərlər üçün ilk və tək sosial şəbəkə" class="img-fluid avatar" src="@Url.Content($"/images/{GetMainPic("users", Username)}")">
+                            </div>
+                            <div class="col-8 col-sm-9 col-md-9 col-lg-10">
+                                <div class="input_comment">
+                                    <input class="fb-input messagebox" id="send_input" type="text" placeholder="@SharedLocalizer["Account.SendMessage"].."
+                                           required data-parsley-required-message="@ValidationLocalizer["Required"]"
+                                           data-parsley-maxlength="2500" data-parsley-maxlength-message="@ValidationLocalizer["StringLength", "", 2500]">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+}
+
+@section addJs{
+    <script src="~/js/chat.js"></script>
+}

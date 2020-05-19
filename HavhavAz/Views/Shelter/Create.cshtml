@@ -1,0 +1,71 @@
+﻿@using HavhavAz.Models.ShelterModels
+@model ShelterViewModel
+
+@{
+    ViewBag.Title = SharedLocalizer["Titles.Shelter"];
+}
+
+@section Content{
+    <div class="row">
+        <div class="col-md-12 box">
+            <div class="auth-form">
+                <form method="post" enctype="multipart/form-data" asp-controller="Shelter" asp-action="Create" asp-antiforgery="true" data-parsley-validate>
+                    
+                    <div class="col-md-12 text-center">
+                        <h4 class="fb-title">@SharedLocalizer["Create"]</h4>
+                    </div>
+
+                    <p class="fb-title text-center">@SharedLocalizer["GeneralInfo"]:</p>
+
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <div class="fb img-box-rounded">
+                                <img alt="Azərbaycanda heyvansevərlər üçün ilk və tək sosial şəbəkə" id="main-pic" class="img-autoload" src="~/images/beqemot.png" />
+                                <input type="file" class="img-autoload-input" name="Image" id="main-pic-input" style="display: none;" />
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12 text-center">
+                                    <span asp-validation-for="Image"></span>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="col-md-6">
+                            <p class="fb-title text-center">@SharedLocalizer["Name"]:</p>
+                            <input asp-for="ShelterTranslations.Name" class="fb-input-text" placeholder="@SharedLocalizer["Name"]..."
+                                   required data-parsley-required-message="@ValidationLocalizer["Required"]"
+                                   data-parsley-maxlength="100" data-parsley-maxlength-message="@ValidationLocalizer["StringLength", "", 100]" />
+                            <span asp-validation-for="ShelterTranslations.Name"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="fb-title text-center">@SharedLocalizer["FoundedDate"]:</p>
+                            <input asp-for="Shelter.FoundedYear" type="number" class="fb-input-text" />
+                        </div>
+                        <div class="col-md-12">
+                            <textarea asp-for="ShelterTranslations.Info" class="fb-input-text fb-textarea" placeholder="@SharedLocalizer["Info"]..."
+                                      required data-parsley-required-message="@ValidationLocalizer["Required"]"
+                                      data-parsley-maxlength="3000" data-parsley-maxlength-message="@ValidationLocalizer["StringLength", "", 3000]"></textarea>
+                            <span asp-validation-for="ShelterTranslations.Info"></span>
+
+                            <textarea asp-for="ShelterTranslations.BankCredentials" class="fb-input fb-textarea" placeholder="@SharedLocalizer["Charity.BankCredentials.Placeholder"]..."
+                                      data-parsley-maxlength="2500" data-parsley-maxlength-message="@ValidationLocalizer["StringLength", "", 2500]"
+                                      data-parsley-minlength="10" data-parsley-minlength-message="@ValidationLocalizer["StringLengthWithMin", "", 10, 2500]">
+                            </textarea>
+                            <span asp-validation-for="ShelterTranslations.BankCredentials"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="fb-title text-center">@SharedLocalizer["OrderNumber"]:</p>
+                            <input asp-for="Shelter.Position" type="number" class="fb-input-text" />
+                        </div>
+                    </div>
+
+                    @Html.EditorFor(m=>m.ContactsViewModel)
+
+                    <input type="submit" class="button orange clickable" value="@SharedLocalizer["Save"]">
+                </form>
+            </div>
+        </div>
+    </div>
+}

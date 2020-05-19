@@ -1,0 +1,139 @@
+﻿@using HavhavAz.Models.ShelterModels
+@using HavhavAz.Models.ContactsModels
+@using static HavhavAz.Models.UserModels.User
+@model IndexViewModel<ShelterViewModel>
+
+@{
+    ViewBag.Title = SharedLocalizer["Titles.Shelter"];
+    bool isAdmin = Context.GetCurrentUserRole() == Roles.Admin;
+
+}
+
+@section UnderTitle{
+    <div class="col-md-12 text-center m-3">
+        @if (isAdmin)
+        {
+            <div class="row mt-4">
+                <div class="col-md-12 text-right">
+                    <a class="button clickable orange no-style mt-4" href="/Shelter/Create">@SharedLocalizer["Create"]</a>
+                </div>
+            </div>
+        }
+    </div>
+}
+
+@section Content{
+    @if (Model.ModelList != null && Model.ModelList.Count > 0)
+    {
+        @foreach (ShelterViewModel svm in Model.ModelList)
+        {
+            Shelter shelter = svm.Shelter;
+            ShelterTranslations st = svm.ShelterTranslations;
+
+            <div class="row m-auto">
+                <div class="col-md-12 box" id="shelter-@shelter.ID">
+                    <div class="row">
+                        <div class="col-md-3 text-center mb-5">
+                            <div class="fb img-box-rounded non-clickable">
+                                <img alt="Azərbaycanda heyvansevərlər üçün ilk və tək sosial şəbəkə"
+                                     src="@Url.Content($"~/images/{GetMainPic("shelters", shelter.ID.ToString())}")"
+                                     class="cb-img">
+                            </div>
+                            @if (shelter.FoundedYear > 0)
+                            {
+                                <div class="col-md-12">
+                                    <span class="date" style="font-size:14px; padding-left:0px">
+                                        <i class="fa fa-calendar orange"></i>
+                                        <span class="orange">@SharedLocalizer[$"FoundedDate"]:</span>
+                                        @shelter.FoundedYear
+                                    </span>
+                                </div>
+                            }
+
+                        </div>
+                        <div class="col-md-9 mt-4">
+                            <h2 class="cb-title wrappable w-75">
+                                @st.Name
+
+                            </h2>
+                            <div class="cb-content">
+                                <nav class="nav nav-tabs" id="nav-tab" role="tablist" style="flex-direction: row-reverse;">
+                                    <a class="nav-item nav-link" id="nav-contacts-tab" data-toggle="tab" href="#nav-contacts-@shelter.ID" role="tab" aria-controls="contacts" aria-expanded="false">
+                                        <i class="fas fa-phone cb-icons"></i>
+                                    </a>
+                                    <a class="nav-item nav-link" id="nav-credentials-tab" data-toggle="tab" href="#nav-credentials-@shelter.ID" role="tab" aria-controls="credentials" aria-expanded="false">
+                                        <i class="fas fa-hand-holding-usd cb-icons"></i>
+                                    </a>
+                                    <a class="nav-item nav-link active" id="nav-info-tab" data-toggle="tab" href="#nav-info-@shelter.ID" role="tab" aria-controls="info" aria-expanded="true">
+                                        <i class="fas fa-info-circle cb-icons"></i>
+                                    </a>
+                                </nav>
+                                <div class="tab-content" id="nav-tabContent">
+                                    <div class="tab-pane fade active show" id="nav-info-@shelter.ID" role="tabpanel" aria-labelledby="nav-info-tab" aria-expanded="true">
+                                        <p class="p-2 with-break">@st.Info</p>
+                                    </div>
+                                    <div class="tab-pane fade" id="nav-credentials-@shelter.ID" role="tabpanel" aria-labelledby="nav-credentials-tab" aria-expanded="false">
+                                        <div class="cb-info-text-box">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <p class="with-break">@(String.IsNullOrWhiteSpace(st.BankCredentials) ? $"{SharedLocalizer[$"NotSpecified"].Value}" : st.BankCredentials)</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="nav-contacts-@shelter.ID" role="tabpanel" aria-labelledby="nav-contacts-tab" aria-expanded="false">
+                                        <div class="cb-info-text-box">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    @Html.DisplayFor(m => svm.ContactsViewModel)
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            @if (isAdmin)
+                            {
+                                <div class="cb-footer">
+                                    <div class="row fb-title text-right">
+                                        <div class="col-md-12">
+
+                                            <a class="orange admin-button no-style" style="color:#f49e42" href="/Shelter/Edit/@shelter.ID">
+                                                <i class="far fa-edit"></i>
+                                            </a>
+
+                                            @if (svm.IsUntranslated)
+                                            {
+                                                <a class="orange admin-button no-style" href="/Shelter/Translate?si=@shelter.ID" style="padding-right:0px; color:#f49e42">
+                                                    <i class="fas fa-language"></i>
+                                                </a>
+                                            }
+
+                                            <a class="orange admin-button no-style change-state" style="padding-right:0px; color:#f49e42"
+                                               href="javascript:void(0);" data-model-name="Shelter" data-model-id="@shelter.ID" data-action="Deleted" data-admin="@isAdmin">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        }
+        <page-link page-model="Model.PageViewModel" url="/Shelter/@(Context.Request.QueryString.Value)"></page-link>
+    }
+    else
+    {
+        <vc:error-page error="@SharedLocalizer[$"NoResult"].Value"></vc:error-page>
+    }
+
+}
+
+
+

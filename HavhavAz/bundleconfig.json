@@ -1,0 +1,53 @@
+[
+  {
+    "outputFileName": "wwwroot/css/bundle.css",
+    "inputFiles": [
+      "wwwroot/css/bootstrap.min.css",
+      "wwwroot/css/jquery.modal.min.css",
+      "wwwroot/css/lightbox.css",
+      "wwwroot/css/style.css",
+      "wwwroot/css/media-queries.css",
+      "wwwroot/css/charity-box.css",
+      "wwwroot/css/jquery-ui.css",
+      "wwwroot/css/sweetalert2.min.css",
+      "wwwroot/css/bootstrap-datetimepicker.min.css",
+      "wwwroot/css/background.css",
+      "wwwroot/css/menu.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/css/extraBundle.css",
+    "inputFiles": [
+      "wwwroot/css/editable-table.css",
+      "wwwroot/css/comments.css",
+      "wwwroot/font-awesome/css/all.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/bundle.js",
+    "inputFiles": [
+      "wwwroot/js/bootstrap.js",
+      "wwwroot/js/main.js",
+      "wwwroot/js/general.js",
+      "wwwroot/js/html5lightbox.js",
+      "wwwroot/js/parsley.min.js",
+      "wwwroot/js/editable-table.js",
+      //"wwwroot/js/popper.min.js",
+      "wwwroot/js/jquery.modal.min.js",
+      "wwwroot/js/sweetalert2.min.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/extraBundle.js",
+    "inputFiles": [
+      "wwwroot/font-awesome/js/fontawesome.min.js",
+      "wwwroot/js/moment-with-locales.min.js",
+      "wwwroot/js/bootstrap-datetimepicker.min.js"
+    ],
+
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    }
+  }
+]

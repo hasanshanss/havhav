@@ -1,0 +1,83 @@
+﻿@using HavhavAz.Models.ContactsModels;
+@using HavhavAz.Models.VetModels
+@model VetViewModel
+
+@{
+    Vet vet = Model.Vet;
+    ViewBag.Title = SharedLocalizer["Titles.Vet"];
+}
+
+@section Content{
+<div class="row">
+    <div class="col-md-12 box">
+        <div class="auth-form">
+            <form method="post" enctype="multipart/form-data" asp-controller="Vet" asp-action="Edit" asp-antiforgery="true" data-parsley-validate>
+
+                <input asp-for="Vet.ID" type="hidden" />
+                <input type="hidden" value="@(Model.VetTranslations?.ID ?? 0)" name="VetTranslations.ID" />
+
+                <div class="col-md-12 text-center">
+                    <h4 class="fb-title">@SharedLocalizer["Edit"]</h4>
+                </div>
+
+                <p class="fb-title text-center">@SharedLocalizer["GeneralInfo"]:</p>
+
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <div class="fb img-box-rounded">
+                            <img alt="Azərbaycanda heyvansevərlər üçün ilk və tək sosial şəbəkə"
+                                 src="@Url.Content($"~/images/{GetMainPic("vets", vet.ID.ToString())}")"
+                                 id="main-pic" class="img-autoload" />
+                            <input type="file" class="img-autoload-input" name="Image" id="main-pic-input" style="display: none;" />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <span asp-validation-for="Image"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <p class="fb-title text-center">@SharedLocalizer["Name"]:</p>
+                        <input asp-for="VetTranslations.Name" class="fb-input-text" placeholder="@SharedLocalizer["Name"]..."
+                               required data-parsley-required-message="@ValidationLocalizer["Required"]"
+                               data-parsley-maxlength="100" data-parsley-maxlength-message="@ValidationLocalizer["StringLength", "" , 100]" />
+                        <span asp-validation-for="VetTranslations.Name"></span>
+                    </div>
+                    <div class="col-md-6">
+                        <p class="fb-title text-center">@SharedLocalizer["FoundedDate"]:</p>
+                        <input asp-for="Vet.FoundedYear" type="number" class="fb-input-text" />
+                    </div>
+                    <div class="col-md-12">
+                        <textarea asp-for="VetTranslations.Info" class="fb-input-text fb-textarea" placeholder="@SharedLocalizer["Info"]..."
+                                  required data-parsley-required-message="@ValidationLocalizer["Required"]"
+                                  data-parsley-maxlength="3000" data-parsley-maxlength-message="@ValidationLocalizer["StringLength", "" , 3000]"> 
+                            </textarea>
+                        <span asp-validation-for="VetTranslations.Info"></span>
+                    </div>
+                    <div class="col-md-6">
+                        <p class="fb-title text-center">@SharedLocalizer["OrderNumber"]:</p>
+                        <input asp-for="Vet.Position" type="number" class="fb-input-text" />
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    @{
+                    var contacts = Model.ContactsViewModel.Contacts;
+                    var address = Model.ContactsViewModel.Address;
+                    }
+
+                    <input type="hidden" value="@contacts?.ID" name="ContactsViewModel.Contacts.ID" />
+                    <input type="hidden" value="@(address?.ID ?? 0)" name="ContactsViewModel.Address.ID" />
+
+                    @Html.EditorFor(m => m.ContactsViewModel)
+                </div>
+
+                <input type="submit" class="button orange clickable" value="@SharedLocalizer[" Save"]">
+            </form>
+        </div>
+    </div>
+</div>
+}

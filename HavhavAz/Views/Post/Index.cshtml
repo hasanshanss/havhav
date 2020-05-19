@@ -1,0 +1,70 @@
+﻿@using HavhavAz.Models
+@using HavhavAz.Models.PostModels
+@using static HavhavAz.Models.UserModels.User
+@model IndexViewModel<PostViewModel>
+
+@{
+    ViewBag.Title = SharedLocalizer["Titles.News"];
+
+    string ptn = Context.Request.Query["ptn"];
+    string si = Context.Request.Query["si"];
+
+    //check for admin
+    bool isAdmin = Context.GetCurrentUserRole() == Roles.Admin;
+
+    //if "state" query string is not defined, then assign state as 1 (approved)
+    string state_query_string = Context.Request.Query["state"].ToString();
+    Byte.TryParse(state_query_string, out byte state);
+    state = String.IsNullOrWhiteSpace(state_query_string) ? (byte)1 : state;
+
+    //set state in SelectList
+    Model.SelectedState = state;
+}
+
+@section UnderTitle{
+
+    <div class="row w-100 mb-3">
+        <div class="col-md-12 text-left">
+            @if (isAdmin)
+            {
+                if (state == 5)
+                {
+
+                    <button class="button bg-danger clickable" id="delete-all" data-model-name="Post">
+                        @SharedLocalizer["DeleteAll"]
+                    </button>
+                }
+                <select asp-for="SelectedState" asp-items="_stateSelectList"
+                        name="state" class="fb-input-text" style="width:auto;"></select>
+            }
+
+            @if ((ViewBag.IsMine ?? false) || isAdmin)
+            {
+                <a class="button clickable orange no-style float-right" href="/Post/Create?ptn=@(String.IsNullOrEmpty(ptn) ? "News" : ptn)&si=@(String.IsNullOrEmpty(si) ? "0" : si)">
+                    @SharedLocalizer["Create"]
+                </a>
+            }
+        </div>
+    </div>
+
+
+}
+
+@section Content{
+    @if (Model.ModelList != null && Model.ModelList.Count > 0)
+    {
+        @Html.AntiForgeryToken()
+        @foreach (PostViewModel pvm in Model.ModelList)
+        {
+            @Html.DisplayFor(m => pvm, new { SelectedState = Model.SelectedState });
+        }
+        <page-link page-model="Model.PageViewModel" url="/Post/Index@(Context.Request.QueryString.Value)"></page-link>
+    }
+    else
+    {
+        <vc:error-page error="@SharedLocalizer[$"NoResult"].Value"></vc:error-page>
+    }
+}
+
+
+

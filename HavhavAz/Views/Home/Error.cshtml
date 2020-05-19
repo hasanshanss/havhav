@@ -1,0 +1,10 @@
+﻿@model string
+
+@{
+    //string statusCode = ViewContext.RouteData.Values["statusCode"].ToString();
+    ViewBag.Title = $"{SharedLocalizer["Error"].Value}: {Model}";
+}
+
+@section Content{
+    <vc:error-page error="@SharedLocalizer[$"Errors.{Model}"].Value"></vc:error-page>
+}

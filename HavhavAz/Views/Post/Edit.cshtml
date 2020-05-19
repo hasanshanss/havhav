@@ -1,0 +1,75 @@
+﻿@using HavhavAz.Models.PostModels
+@model PostViewModel
+@{
+    string subjectId = Context.Request.Query["si"];
+    string ptn = Context.Request.Query["ptn"];
+
+    ViewBag.Title = SharedLocalizer["Titles.Post"];
+
+    string id = ViewContext.RouteData.Values["id"].ToString();
+}
+@section Content {
+
+    <div class="row m-auto">
+        <div class="col-md-12 box">
+
+            <form method="post" enctype="multipart/form-data" asp-controller="Post" asp-action="Edit" asp-antiforgery="true" data-parsley-validate>
+
+                @*<input asp-for="Post.ID" value="@id" />*@
+
+                <div class="col-md-12 text-center">
+                    <h4 class="fb-title">@SharedLocalizer["Edit"]</h4>
+                </div>
+
+                <vc:images action="Edit" path="posts/@id">
+                </vc:images>
+
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <span asp-validation-for="FormImages"></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="offset-2 col-md-8 col-sm-8 col-8">
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <p class="fb-title">@SharedLocalizer["GeneralInfo"]:</p>
+                                <input asp-for="PostTranslations.Title" class="fb-input-text" placeholder="@SharedLocalizer["Post.Title"]..."
+                                       required data-parsley-required-message="@ValidationLocalizer["Required"]"
+                                       data-parsley-maxlength="250" data-parsley-maxlength-message="@ValidationLocalizer["StringLength", "", 250]" />
+                                <span asp-validation-for="PostTranslations.Title"></span>
+
+                                <textarea asp-for="PostTranslations.Content" class="fb-input-text fb-textarea" placeholder="@SharedLocalizer["Post.Content"]..."
+                                          required data-parsley-required-message="@ValidationLocalizer["Required"]"
+                                          data-parsley-maxlength="5000" data-parsley-maxlength-message="@ValidationLocalizer["StringLength", "", 5000]">
+                                </textarea>
+                                <span asp-validation-for="PostTranslations.Content"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="fb-title">@SharedLocalizer["SelectLanguage"]:</p>
+                        <select asp-for="PostTranslations.Culture" asp-items="GenerateLanguageSelectList(Model.ExistedCultures)" class="fb-input-text"></select>
+                        <span asp-validation-for="PostTranslations.Culture"></span>
+                    </div>
+                </div>
+                
+
+                <div class="row">
+                    <div class="col-md-12 text-right">
+                        <input type="submit" class="button orange clickable" value="@SharedLocalizer["Save"]">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+}
+
+
+

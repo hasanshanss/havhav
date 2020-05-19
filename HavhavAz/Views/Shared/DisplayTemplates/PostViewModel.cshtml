@@ -1,0 +1,99 @@
+﻿@using HavhavAz.Models.PostModels
+@using static HavhavAz.Models.UserModels.User
+@model PostViewModel
+
+@{
+
+    Post post = Model.Post;
+    PostTranslations pt = post.PostTranslations.First();
+
+    var id = post.ID.ToString();
+    byte PostType = (byte)post.PostType;
+
+    Int32 UserId = Context.GetCurrentUserId();
+    Roles role = Context.GetCurrentUserRole();
+
+    bool isAdmin = role == Roles.Admin;
+    bool isMine = post.UserId == UserId;
+}
+
+
+<div class="row m-auto">
+    <div class="col-md-12 box" id="post-@post.ID">
+        <div class="row">
+            <div class="col-md-4 text-center">
+                <div class="cb-img-box">
+                    <img alt="@pt.Title" src=@Url.Content($"~/images/{GetMainPic("posts", id, id)}") class="cb-img">
+                </div>
+                <div class="row">
+                    <div class="col-12 col-md-12">
+                        <div style="float:left;">
+                            <a href="Account/Index/@Model.Publisher" class="orange">
+                                <span style="font-size:14px">
+                                    <i class="fa fa-pencil "></i>
+                                    @Model.Publisher
+                                </span>
+                            </a>
+                        </div>
+                        <div style="float:right;">
+                            <span class="date" style="font-size:14px">
+                                <i class="fa fa-calendar orange"></i>
+                                @post.CreatedDate.ToString("dd.MM.yyyy")
+                            </span>
+                            <span class="date" style="font-size:14px">
+                                <i class="far fa-clock orange"></i>
+                                @post.CreatedDate.ToString("HH:mm")
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="cb-content">
+                    <h2 class="wrappable">@pt.Title</h2>
+                    <p class="with-break with-dots">@pt.Content</p>
+                </div>
+                <div class="cb-footer">
+                    <div class="row fb-title text-right">
+                        <div class="col-md-12">
+                            @if (isAdmin)
+                            {
+                                <a class="orange admin-button no-style" style="color:#f49e42" href="/Post/Edit/@id">
+                                    <i class="far fa-edit"></i>
+                                </a>
+                            }
+                            @if (isMine || isAdmin)
+                            {
+                                <a class="orange admin-button no-style change-state" style="padding-right:0px; color:#f49e42"
+                                   href="javascript:void(0);" data-model-name="Post" data-model-id="@id" data-action="Deleted" data-admin="@isAdmin">
+                                    <i class="fas fa-trash-alt"></i>
+                                </a>
+                                @if (Model.IsUntranslated)
+                                {
+                                    <a class="orange admin-button no-style" href="/Post/Translate?pi=@id" style="padding-right:0px; color:#f49e42">
+                                        <i class="fas fa-language"></i>
+                                    </a>
+                                }
+                            }
+                            <a href="/Post/Index/@Slugify(pt.Title)_@post.ID" style="color:#f49e42" class="admin-button no-style">
+                                <i class="fas fa-book-open"></i>
+                                @SharedLocalizer["ReadMore"]
+                            </a>
+                            <div class="col-md-12">
+                                @if (isAdmin)
+                                {
+                                    var ss = ViewBag.SelectedState;
+                                    <select asp-for="@ss" asp-items="_stateSelectList"
+                                            name="private-state" data-model-id="@id" data-model-name="Post" class="fb-input-text" style="width:auto;"></select>
+                                }
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

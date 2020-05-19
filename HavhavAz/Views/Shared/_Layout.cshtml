@@ -1,0 +1,406 @@
+﻿@using HavhavAz.Models.NotificationModels
+
+
+@{
+    bool isAuthorized = User.Identity.IsAuthenticated;
+    string UserId = isAuthorized ? Context.GetCurrentUserId().ToString() : String.Empty;
+    var controller = ViewContext.RouteData.Values["Controller"];
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Havhav.az | @ViewBag.Title </title>
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7, IE=EmulateIE9, IE=EDGE" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="by Hasan Shans - www.hasanshans.com" />
+    <meta name="keywords" content="it, pişik, heyvan, havhav, heyvanlara yardım, baytar, sığınacaq, küçə, myau" />
+    <meta name="description" content="Azərbaycanda heyvansevərlər üçün ilk və tək sosial şəbəkə." />
+    <link href="https://fonts.googleapis.com/css?family=Cuprum&amp;subset=latin,cyrillic" media="screen" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans:700,400&amp;subset=cyrillic,latin" media="screen" rel="stylesheet" type="text/css">
+    @RenderSection("addCss", false)
+
+    <environment include="Production">
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-156899933-1"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { dataLayer.push(arguments); }
+            gtag('js', new Date());
+
+            gtag('config', 'UA-156899933-1');
+        </script>
+
+        <link rel="stylesheet" href="~/css/bundle.min.css" />
+        <link rel="stylesheet" href="~/css/extraBundle.css" />
+    </environment>
+
+    <environment include="Development">
+        <link rel="stylesheet" type="text/css" href="~/font-awesome/css/all.css">
+        <link rel="stylesheet" type="text/css" href="~/css/bootstrap.min.css">
+        <link rel="stylesheet" href="~/css/jquery.modal.min.css" />
+        <link rel="stylesheet" type="text/css" href="~/css/lightbox.css">
+        <link rel="stylesheet" type="text/css" href="~/css/editable-table.css">
+        <link rel="stylesheet" type="text/css" href="~/css/style.css">
+        <link rel="stylesheet" type="text/css" href="~/css/media-queries.css">
+        <link rel="stylesheet" type="text/css" href="~/css/charity-box.css">
+        <link rel="stylesheet" type="text/css" href="~/css/jquery-ui.css">
+        <link rel="stylesheet" type="text/css" href="~/css/sweetalert2.min.css">
+
+        <link rel="stylesheet" type="text/css" href="~/css/comments.css">
+        <link rel="stylesheet" type="text/css" href="~/css/menu.css">
+        <link rel="stylesheet" type="text/css" href="~/css/bootstrap-datetimepicker.min.css">
+        <link rel="stylesheet" type="text/css" href="~/css/background.css">
+    </environment>
+
+    <script type="text/javascript" src="~/js/jquery-3.3.1.min.js"></script>
+
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-md fixed-top" id="upper-nav">
+            <div class="container-fluid" id="top-header">
+
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-2 d-none d-md-block">
+                            <a href="/Home/Index" class="no-style">
+                                <img src=@Url.Content("~/images/logo.png") id="logo" alt="Azərbaycanda heyvansevərlər üçün ilk və tək sosial şəbəkə">
+                            </a>
+                        </div>
+
+                        <div class="col-md-8 d-none d-lg-block header-logo-text-box">
+                            <div class="row">
+                                <a href="/Home/Index" class="no-style">
+                                    <h1 id="header-text">Havhav.az</h1>
+                                </a>
+                            </div>
+                            <div class="row">
+                                <h3 title="Havhav.az">@SharedLocalizer["Header.MainText"]</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+
+                    <div class="row text-right" id="header-icons">
+                        <div class="col-md-12">
+
+                            <div class="d-sm-block d-md-none" style="float:left">
+                                <a href="/Home/Index" class="no-style">
+                                    <img src=@Url.Content("~/images/logo.png") id="logo" alt="Azərbaycanda heyvansevərlər üçün ilk və tək sosial şəbəkə">
+                                </a>
+                            </div>
+
+                            <a href="#" onclick="toggler('search-box')" class="white d-sm-inline d-md-none">
+                                <i class="fas fa-search header-icons clickable"></i>
+                            </a>
+
+                            @if (isAuthorized)
+                            {
+
+                                <a class="no-style white" href="/Account/Notifications">
+                                    <i class="fas fa-bell header-icons clickable"></i>
+                                    <notification-count user-id="@UserId" type="notification"></notification-count>
+                                </a>
+                                <a class="no-style white" href="/Account/Messages">
+                                    <i class="fas fa-envelope header-icons clickable"></i>
+                                    <notification-count user-id="@UserId" type="message"></notification-count>
+                                </a>
+                            }
+                            else
+                            {
+                                <a class="no-style white clickable" href="/Account/Register">
+                                    @SharedLocalizer["Registration"]
+                                </a>
+                                <span class="white">|</span>
+                                <a class="no-style white clickable" href="/Account/Login">
+                                    @SharedLocalizer["Login"]
+                                </a>
+
+                            }
+
+                            <a href="#" class="open-modal white d-sm-inline d-md-none">
+                                <i class="fas fa-bars header-icons clickable"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row flex-row-reverse d-md-flex" style="display:none" id="search-box">
+                        <div class="col-1 col-md-1 mt-2">
+                            <i class="fas fa-user clickable search-icon" id="user-search" title="@SharedLocalizer["Search.User"]"></i>
+                            <i class="far fa-newspaper clickable search-icon active" id="newspaper-search" title="@SharedLocalizer["Search.News"]"></i>
+                        </div>
+                        <div class="col-10 col-md-6 pr-0">
+                            <form asp-controller="Post" method="GET" id="search-form">
+                                <input class="fb-input-text" name="keyword" placeholder="@SharedLocalizer["Search"]...">
+                            </form>
+                        </div>
+
+                    </div>
+
+                    @{
+                        var returnUrl = $"{Context.Request.Path}{Context.Request.QueryString.Value}";
+                    }
+                    <div class="languages d-flex flex-row-reverse">
+                        <a href="/Home/SetLanguage?culture=EN&returnUrl=@System.Web.HttpUtility.UrlEncode(returnUrl)" class="white">
+                            <span class="clickable">EN </span>
+                        </a>
+                        <span class="lang-separator"> / </span>
+                        <a href="/Home/SetLanguage?culture=RU&returnUrl=@System.Web.HttpUtility.UrlEncode(returnUrl)" class="white">
+                            <span class="clickable">  RU  </span>
+                        </a>
+                        <span class="lang-separator"> / </span>
+                        <a href="/Home/SetLanguage?culture=AZ&returnUrl=@System.Web.HttpUtility.UrlEncode(returnUrl)" class="white">
+                            <span class="clickable">AZ</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+
+    </header>
+    <div class="container mt-4">
+
+        <div class="row title-box">
+            <div class="col-md-12">
+                <h1 class="title-text button orange">
+                    @ViewBag.Title <span id="next-title"></span>
+                </h1>
+            </div>
+            @RenderSection("UnderTitle", false)
+        </div>
+
+
+        @RenderSection("Content")
+
+    </div>
+
+
+    <div class="container modal" id="warning">
+        <div class="row">
+            <div class="col-md-12">
+                <h2></h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="container modal no-border" id="menu">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="menu-box" id="account-box" data-model="account" data-message="@SharedLocalizer["Menu.Account"]">
+                    <div class="button-box">
+                        @if (!isAuthorized)
+                        {
+                            <a href="/Account/Register" class="menu-button-1" title="heyvanlara yardim">
+                                <span title="">  @SharedLocalizer["Registration"] </span>
+                            </a>
+                            <a href="/Account/Login" class="menu-button-2">
+                                @SharedLocalizer["Login"]
+                            </a>
+                        }
+                        else
+                        {
+                            <a href="/Account/Index" class="menu-button-1">
+                                @SharedLocalizer["Menu.Account.Index"]
+                            </a>
+                            <a href="/Account/Edit" class="menu-button-2">
+                                @SharedLocalizer["Menu.Account.Edit"]
+                            </a>
+                            <a href="/Security" class="menu-button-3">
+                                @SharedLocalizer["Menu.Account.Security"]
+                            </a>
+                            <a id="logout" class="menu-button-4">
+                                @SharedLocalizer["Menu.Account.Logout"]
+                            </a>
+
+                            <form asp-controller="Account" asp-action="Logout" method="post" id="logout-form">
+                                <input type="submit" class="d-none"/>
+                            </form>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 d-none" id="chat">
+                <a href="/Home/Chat">
+                    <div class="menu-box empty" id="chat-box" data-message="@SharedLocalizer["Menu.Chat"]">
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <div class="menu-box" id="announcements-box" data-message="@SharedLocalizer["Menu.Ad"]">
+                    <div class="button-box">
+                        <a href='/Charity' class='menu-button-1'>@SharedLocalizer["Menu.Ad.Charity"]</a>
+                        <a href='/Ad?ati=1' class='menu-button-2'>@SharedLocalizer["Menu.Ad.LFO"]</a>
+                        <a href='/Ad?ati=2' class='menu-button-3'>@SharedLocalizer["Menu.Ad.Wanted"]</a>
+                        <a href='/Ad?ati=3' class='menu-button-4'>@SharedLocalizer["Menu.Ad.Mating"]</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <a href="/Post">
+                    <div class="menu-box empty" id="news-box" data-message="@SharedLocalizer["Menu.News"]">
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <a href="/Shelter">
+                    <div class="menu-box empty" id="shelter-box" data-message="@SharedLocalizer["Menu.Shelter"]">
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="/Forum">
+                    <div class="menu-box empty" id="forum-box" data-message="@SharedLocalizer["Menu.Forum"]">
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="/Vet">
+                    <div class="menu-box empty" id="vet-box" data-message="@SharedLocalizer["Menu.Vet"]">
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container modal no-border" id="loader">
+        <div class="row justify-content-center align-items-center" style="height: 250px;
+">
+            <div class="col-md-12 text-center">
+                <img src="~/images/loader.gif" style="width:50px; height:40px; filter:none;" />
+                <span class="orange">@SharedLocalizer["Loading"]...</span>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container-fluid d-md-inline d-none">
+        <div class="row">
+            <div class="white ">
+                <div class="ms-nav-container">
+                    <div class="ms-main" id="ms-chat">
+                        <a href="/Home/Chat">
+                            <label class="ms-menu-toggle-lbl" for="ms-menu">
+                                <span class="far fa-comments"></span>
+                            </label>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="white ">
+                <div class="ms-nav-container">
+                    <div class="ms-main">
+                        <a class="open-modal">
+                            <label class="ms-menu-toggle-lbl" for="ms-menu">
+                                <span class="fas fa-bars"></span>
+                            </label>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 text-right not-box">
+                <ul class="not-list"></ul>
+            </div>
+        </div>
+    </div>
+
+
+
+    <footer>
+        <div class="container mt-2" style="color:white;">
+            <div class="row">
+                <div class="col-md-4 col-sm-4 col-3">
+                    <ul class="contacts-list cl-inline" style="text-align:left;">
+                        <li>
+                            <a class="no-style white" target="_blank" href="http://www.fb.com/havhav.az">
+                                <i class="fab fa-facebook"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="no-style white" target="_blank" href="http://www.instagram.com/havhav_az">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </li>
+                        <li id="contacts-envelope">
+                            <a class="no-style white" data-toggle="tooltip" title="support@havhav.az">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4 col-sm-4 col-6 text-center">
+                    <a class="no-style white" href="http://www.hasanshans.com" target="_blank" style="font-size: 15px;">
+                        by Hasan Shans
+                    </a>
+                </div>
+                <div class="col-md-4 col-sm-4 col-2 text-right">
+                    2020
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="~/js/messages/messages.@(CultureInfo.CurrentCulture.ToString()).js"></script>
+    <script src="~/js/popper.min.js"></script>
+    <script src="~/js/signalr.min.js"></script>
+
+    <environment include="Production">
+        <script src="~/js/bundle.min.js"></script>
+        <script src="~/js/extraBundle.min.js"></script>
+    </environment>
+
+    <environment include="Development">
+        <script src="~/font-awesome/js/fontawesome.min.js"></script>
+        <script src="~/js/popper.min.js"></script>
+        <script src="~/js/bootstrap.min.js"></script>
+        <script src="~/js/editable-table.js"></script>
+        <script src="~/js/parsley.min.js"></script>
+        <script src="~/js/general.js"></script>
+        <script src="~/js/html5lightbox.js"></script>
+        <script src="~/js/jquery.modal.min.js"></script>
+        <script src="~/js/signalr.min.js"></script>
+        <script src="~/js/sweetalert2.min.js"></script>
+        <script src="~/js/main.js"></script>
+        <script src="~/js/moment-with-locales.min.js"></script>
+        <script src="~/js/bootstrap-datetimepicker.min.js"></script>
+    </environment>
+
+
+    <script>
+        locale = "@CultureInfo.CurrentCulture.ToString()";
+        isAuth = "@isAuthorized.ToString().ToLower()" === 'true';
+        
+        
+        username = "@User?.FindFirst(m => m.Type == "Username")?.Value";
+
+        var status = "@TempData["Status"]";
+        var action = "@TempData["Action"]";
+
+        if (!isNullOrEmpty(status)) {
+
+            Swal.fire({
+                title: messages[status],
+                text: messages[action],
+                type: status,
+                confirmButtonColor: '#3085d6'
+            });
+        }
+    </script>
+
+
+    @RenderSection("addJs", false)
+
+
+</body>
+</html>

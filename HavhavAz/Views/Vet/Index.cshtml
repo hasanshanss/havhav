@@ -1,0 +1,131 @@
+﻿@using HavhavAz.Models.VetModels
+@using HavhavAz.Models.ContactsModels
+@using static HavhavAz.Models.UserModels.User
+@model IndexViewModel<VetViewModel>
+
+@{
+    ViewBag.Title = SharedLocalizer["Titles.Vet"];
+    bool isAdmin = Context.GetCurrentUserRole() == Roles.Admin;
+
+}
+
+@section UnderTitle{
+    <div class="col-md-12 text-center m-3">
+        @if (isAdmin)
+        {
+            <div class="row mt-4">
+                <div class="col-md-12 text-right">
+                    <a class="button clickable orange no-style mt-4" href="/Vet/Create">@SharedLocalizer["Create"]</a>
+                </div>
+            </div>
+        }
+    </div>
+}
+
+@section Content{
+    @if (Model.ModelList != null && Model.ModelList.Count > 0)
+    {
+        @foreach (VetViewModel vvm in Model.ModelList)
+        {
+            Vet vet = vvm.Vet;
+            VetTranslations vt = vvm.VetTranslations;
+
+            <div class="row m-auto">
+                <div class="col-md-12 box" id="vet-@vet.ID">
+                    <div class="row">
+                        <div class="col-md-3 text-center mb-5">
+                            <div class="fb img-box-rounded non-clickable">
+                                <img alt="Azərbaycanda heyvansevərlər üçün ilk və tək sosial şəbəkə"
+                                     src="@Url.Content($"~/images/{GetMainPic("vets", vet.ID.ToString())}")"
+                                     class="cb-img">
+                            </div>
+                            @if (vet.FoundedYear > 0)
+                            {
+                                <div class="col-md-12">
+                                    <span class="date" style="font-size:14px; padding-left:0px">
+                                        <i class="fa fa-calendar orange"></i>
+                                        <span class="orange">@SharedLocalizer[$"FoundedDate"]:</span>
+                                        @vet.FoundedYear
+                                    </span>
+                                </div>
+                            }
+
+                        </div>
+                        <div class="col-md-9 mt-4">
+                            <h2 class="cb-title wrappable w-75">
+                                @vt.Name
+
+                            </h2>
+                            <div class="cb-content">
+                                <nav class="nav nav-tabs" id="nav-tab" role="tablist" style="flex-direction: row-reverse;">
+                                    <a class="nav-item nav-link" id="nav-contacts-tab" data-toggle="tab" href="#nav-contacts-@vet.ID" role="tab" aria-controls="contacts" aria-expanded="false">
+                                        <i class="fas fa-phone cb-icons"></i>
+                                    </a>
+                                    <a class="nav-item nav-link active" id="nav-info-tab" data-toggle="tab" href="#nav-info-@vet.ID" role="tab" aria-controls="info" aria-expanded="true">
+                                        <i class="fas fa-info-circle cb-icons"></i>
+                                    </a>
+                                </nav>
+                                <div class="tab-content" id="nav-tabContent">
+                                    <div class="tab-pane fade active show" id="nav-info-@vet.ID" role="tabpanel" aria-labelledby="nav-info-tab" aria-expanded="true">
+                                        <p class="p-2 with-break">@vt.Info</p>
+                                    </div>
+                                    <div class="tab-pane fade" id="nav-contacts-@vet.ID" role="tabpanel" aria-labelledby="nav-contacts-tab" aria-expanded="false">
+
+                                        <div class="cb-info-text-box">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    @Html.DisplayFor(m => vvm.ContactsViewModel)
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            @if (isAdmin)
+                            {
+                                <div class="cb-footer">
+                                    <div class="row fb-title text-right">
+                                        <div class="col-md-12">
+
+                                            <a class="orange admin-button no-style" style="color:#f49e42" href="/Vet/Edit/@vet.ID">
+                                                <i class="far fa-edit"></i>
+                                            </a>
+
+                                            @if (vvm.IsUntranslated)
+                                            {
+                                                <a class="orange admin-button no-style" href="/Vet/Translate?vi=@vet.ID" style="padding-right:0px; color:#f49e42">
+                                                    <i class="fas fa-language"></i>
+                                                </a>
+                                            }
+
+                                            <a class="orange admin-button no-style change-state" style="padding-right:0px; color:#f49e42"
+                                               href="javascript:void(0);" data-model-name="Vet" data-model-id="@vet.ID" data-action="Deleted" data-admin="@isAdmin">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        }
+        <page-link page-model="Model.PageViewModel" url="/Vet/@(Context.Request.QueryString.Value)"></page-link>
+    }
+    else
+    {
+        <vc:error-page error="@SharedLocalizer[$"NoResult"].Value"></vc:error-page>
+    }
+
+}
+
+
+
+@section addJs{
+    
+}

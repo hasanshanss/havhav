@@ -1,0 +1,642 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Account.BirthDate" xml:space="preserve">
+    <value>Doğum tarixi</value>
+  </data>
+  <data name="Account.MessageModal.Placeholder" xml:space="preserve">
+    <value>Salam...</value>
+  </data>
+  <data name="Account.MessageModal.Title" xml:space="preserve">
+    <value>İsmarıc göndər</value>
+  </data>
+  <data name="Account.PostButtons.Ads" xml:space="preserve">
+    <value>Elanlar</value>
+  </data>
+  <data name="Account.PostButtons.Charities" xml:space="preserve">
+    <value>Yardım kampaniyası</value>
+  </data>
+  <data name="Account.PostButtons.News" xml:space="preserve">
+    <value>Xəbərlər</value>
+  </data>
+  <data name="Account.PostButtons.Title" xml:space="preserve">
+    <value>Paylaşımlar</value>
+  </data>
+  <data name="Account.SendMessage" xml:space="preserve">
+    <value>İsmarıc göndər</value>
+  </data>
+  <data name="Ad.Age" xml:space="preserve">
+    <value>Yaş</value>
+  </data>
+  <data name="Ad.AgeMonth" xml:space="preserve">
+    <value>Ay</value>
+  </data>
+  <data name="Ad.AgeYear" xml:space="preserve">
+    <value>İl</value>
+  </data>
+  <data name="Ad.Breed" xml:space="preserve">
+    <value>Cins (Növ)</value>
+  </data>
+  <data name="Ad.Color" xml:space="preserve">
+    <value>Rəng</value>
+  </data>
+  <data name="Ad.Gender" xml:space="preserve">
+    <value>Cinsi</value>
+  </data>
+  <data name="AdditionalInfo" xml:space="preserve">
+    <value>Əlavə məlumat</value>
+  </data>
+  <data name="Ads.Completed" xml:space="preserve">
+    <value>Xilas olunanlar</value>
+  </data>
+  <data name="Ads.Pending" xml:space="preserve">
+    <value>Yardım gözləyənlər</value>
+  </data>
+  <data name="Charities.Completed" xml:space="preserve">
+    <value>Xilas olunanlar</value>
+  </data>
+  <data name="Charities.Pending" xml:space="preserve">
+    <value>Yardım gözləyənlər</value>
+  </data>
+  <data name="Charity.BankCredentials" xml:space="preserve">
+    <value>Bank məlumatları</value>
+  </data>
+  <data name="Charity.BankCredentials.Placeholder" xml:space="preserve">
+    <value>Bank hesabları</value>
+  </data>
+  <data name="Charity.Info" xml:space="preserve">
+    <value>Məlumat</value>
+  </data>
+  <data name="Charity.Info.Placeholder" xml:space="preserve">
+    <value>Əlavə məlumat</value>
+  </data>
+  <data name="Charity.Name.Placeholder" xml:space="preserve">
+    <value>Ad...</value>
+  </data>
+  <data name="Charity.RequiredAmount.Placeholder" xml:space="preserve">
+    <value>Çatışmayan məbləğ</value>
+  </data>
+  <data name="Chat.Coucou" xml:space="preserve">
+    <value>Salamlamaq :)</value>
+  </data>
+  <data name="Chat.Hello" xml:space="preserve">
+    <value>Salam:)</value>
+  </data>
+  <data name="Comment" xml:space="preserve">
+    <value>Şərh et</value>
+  </data>
+  <data name="Comment.First" xml:space="preserve">
+    <value>İlk şərh edən siz olun!</value>
+  </data>
+  <data name="Comment.Placeholder" xml:space="preserve">
+    <value>Şərh et...</value>
+  </data>
+  <data name="Comment.ShowMore" xml:space="preserve">
+    <value>Daha çox göstər</value>
+  </data>
+  <data name="Comments.Reply" xml:space="preserve">
+    <value>Cavab ver</value>
+  </data>
+  <data name="Contacts" xml:space="preserve">
+    <value>Əlaqə</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>Əlavə et</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Sil</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Redaktə et</value>
+  </data>
+  <data name="Forum.SelectTopic" xml:space="preserve">
+    <value>Mövzu</value>
+  </data>
+  <data name="Gallery" xml:space="preserve">
+    <value>Qalereya</value>
+  </data>
+  <data name="Gender" xml:space="preserve">
+    <value>Cins</value>
+  </data>
+  <data name="GeneralInfo" xml:space="preserve">
+    <value>Əsas məlumat</value>
+  </data>
+  <data name="Header.MainText" xml:space="preserve">
+    <value>...onlar da bizi sevir :)</value>
+  </data>
+  <data name="Journal" xml:space="preserve">
+    <value>Jurnal</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Dil</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Daxil ol</value>
+  </data>
+  <data name="Login.Password" xml:space="preserve">
+    <value>Şifrə</value>
+  </data>
+  <data name="Login.PasswordReset" xml:space="preserve">
+    <value>Şifrəni unutmusuz?</value>
+  </data>
+  <data name="Login.Username" xml:space="preserve">
+    <value>İstifadəçi adı</value>
+  </data>
+  <data name="MainInfo" xml:space="preserve">
+    <value>Əsas məlumat</value>
+  </data>
+  <data name="MainPic" xml:space="preserve">
+    <value>Əsas şəkil</value>
+  </data>
+  <data name="Menu.Account" xml:space="preserve">
+    <value>Hesab</value>
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>Şifrəni dəyiş</value>
+  </data>
+  <data name="Menu.Account.Edit" xml:space="preserve">
+    <value>Məlumatları dəyiş</value>
+  </data>
+  <data name="Menu.Account.Index" xml:space="preserve">
+    <value>Mənim hesabım</value>
+  </data>
+  <data name="Menu.Account.Logout" xml:space="preserve">
+    <value>Çıxış</value>
+  </data>
+  <data name="Menu.Ad" xml:space="preserve">
+    <value>Elanlar</value>
+  </data>
+  <data name="Menu.Ad.Charity" xml:space="preserve">
+    <value>Xeyriyyə</value>
+  </data>
+  <data name="Menu.Ad.LFO" xml:space="preserve">
+    <value>Xeyirxah əllərə verilir</value>
+  </data>
+  <data name="Menu.Ad.Mating" xml:space="preserve">
+    <value>Cütləşdirilir</value>
+  </data>
+  <data name="Menu.Ad.Wanted" xml:space="preserve">
+    <value>Axtarılır</value>
+  </data>
+  <data name="Menu.Forum" xml:space="preserve">
+    <value>Forum</value>
+  </data>
+  <data name="Menu.News" xml:space="preserve">
+    <value>Xəbərlər</value>
+  </data>
+  <data name="Menu.Shelter" xml:space="preserve">
+    <value>Sığınacaqlar</value>
+  </data>
+  <data name="Menu.Vet" xml:space="preserve">
+    <value>Baytarlar</value>
+  </data>
+  <data name="Messages.Delete.Success" xml:space="preserve">
+    <value>Uğurla silindi!</value>
+  </data>
+  <data name="Messages.Edit.Success" xml:space="preserve">
+    <value>Uğurla yeniləndi!</value>
+  </data>
+  <data name="Messages.ErrorOccurred" xml:space="preserve">
+    <value>Xəta baş verdi!</value>
+  </data>
+  <data name="Messages.Inbox" xml:space="preserve">
+    <value>Gələn ismarıclar</value>
+  </data>
+  <data name="Messages.Outbox" xml:space="preserve">
+    <value>Göndərilən ismarıclar</value>
+  </data>
+  <data name="NotificationType.Comment" xml:space="preserve">
+    <value>sizin postu şərh edib</value>
+  </data>
+  <data name="NotificationType.Comment.InvolvedUsers" xml:space="preserve">
+    <value>şərh etdiyiniz postu şərh edib</value>
+  </data>
+  <data name="NotificationType.Like" xml:space="preserve">
+    <value>sizin postu bəyənib</value>
+  </data>
+  <data name="NotificationType.Message" xml:space="preserve">
+    <value>sizə ismarıc göndərib</value>
+  </data>
+  <data name="NotificationType.Receipt" xml:space="preserve">
+    <value>üçün pul göndərilib</value>
+  </data>
+  <data name="NoTranslation" xml:space="preserve">
+    <value>İnformasiya seçdiyiniz dildə mövcüd deyil.</value>
+  </data>
+  <data name="PasswordReset.MailMessage" xml:space="preserve">
+    <value>Hörmətli {0}! Şifrənizi unutduğunuz barədə sorğu qəbul edilib. Yeni şifrə təyin etmək üçün &lt;a href="www.havhav.az/Account/ResetPassword?rpc={1}&amp;username={2}"&gt;buraya klik edin.&lt;/a&gt; Əgər müraciət siz tərəfdən göndərilməyibsə heçnə etməyin. &lt;br&gt;&lt;br&gt;&lt;b&gt;Link yalnız 24 saat ərzində aktivdi!&lt;/b&gt;</value>
+  </data>
+  <data name="PasswordReset.PleaseEnterUsername" xml:space="preserve">
+    <value>Xahiş olunur istifadəçi adınızı qeyd edin.</value>
+  </data>
+  <data name="PasswordReset.ResetButton" xml:space="preserve">
+    <value>Bərpa et</value>
+  </data>
+  <data name="Post.Comment" xml:space="preserve">
+    <value>Şəhr et</value>
+  </data>
+  <data name="Post.Content" xml:space="preserve">
+    <value>Xəbərin mətni</value>
+  </data>
+  <data name="Post.Title" xml:space="preserve">
+    <value>Xəbərin başlığı</value>
+  </data>
+  <data name="ReadMore" xml:space="preserve">
+    <value>Ətraflı bax</value>
+  </data>
+  <data name="Receipt.AddBtn" xml:space="preserve">
+    <value>Qəbz göndər</value>
+  </data>
+  <data name="Receipt.Amount" xml:space="preserve">
+    <value>Göndərilən məbləğ</value>
+  </data>
+  <data name="Receipt.Date" xml:space="preserve">
+    <value>Tarix</value>
+  </data>
+  <data name="Receipt.Form.Amount.Label" xml:space="preserve">
+    <value>Göndərilən məbləğ</value>
+  </data>
+  <data name="Receipt.Form.Name.Label" xml:space="preserve">
+    <value>Adınız</value>
+  </data>
+  <data name="Receipt.Form.Name.Placeholder" xml:space="preserve">
+    <value>Anonim</value>
+  </data>
+  <data name="Receipt.Form.Photo.Label" xml:space="preserve">
+    <value>Qəbzin şəkli</value>
+  </data>
+  <data name="Receipt.Image" xml:space="preserve">
+    <value>Qəbzin şəkili</value>
+  </data>
+  <data name="Receipt.ListBtn" xml:space="preserve">
+    <value>Yardım edənlərin siyahısı</value>
+  </data>
+  <data name="Receipt.ListTitle" xml:space="preserve">
+    <value>Yardım edənlərin siyahısı</value>
+  </data>
+  <data name="Receipt.Sender" xml:space="preserve">
+    <value>Göndərənin adı</value>
+  </data>
+  <data name="Receipt.Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="Register.About" xml:space="preserve">
+    <value>Özünüz haqda məlumat</value>
+  </data>
+  <data name="Register.Birthdate" xml:space="preserve">
+    <value>Doğum tarixi</value>
+  </data>
+  <data name="Register.Gender" xml:space="preserve">
+    <value>Cins</value>
+  </data>
+  <data name="Register.Password" xml:space="preserve">
+    <value>Şifrə</value>
+  </data>
+  <data name="Register.PasswordConfirmation" xml:space="preserve">
+    <value>Təkrar şifrə</value>
+  </data>
+  <data name="Register.Submit" xml:space="preserve">
+    <value>Qeydiyyatdan keç</value>
+  </data>
+  <data name="Register.Username" xml:space="preserve">
+    <value>Istifadəçi adı</value>
+  </data>
+  <data name="Registration" xml:space="preserve">
+    <value>Qeydiyyat</value>
+  </data>
+  <data name="RememberMe" xml:space="preserve">
+    <value>Yadda saxla</value>
+  </data>
+  <data name="Reset" xml:space="preserve">
+    <value>Bərpa et</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Yadda saxla</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Axtar</value>
+  </data>
+  <data name="Search.News" xml:space="preserve">
+    <value>Paylaşımlar üzrə axtarış</value>
+  </data>
+  <data name="Search.User" xml:space="preserve">
+    <value>İstifadəçi üzrə axtarış</value>
+  </data>
+  <data name="Send" xml:space="preserve">
+    <value>Göndər</value>
+  </data>
+  <data name="ShowMore" xml:space="preserve">
+    <value>Daha çox göstər</value>
+  </data>
+  <data name="Titles.Account" xml:space="preserve">
+    <value>Hesab</value>
+  </data>
+  <data name="Titles.Ad" xml:space="preserve">
+    <value>Elanlar</value>
+  </data>
+  <data name="Titles.Charity" xml:space="preserve">
+    <value>Xeyriyyə</value>
+  </data>
+  <data name="Titles.Chat" xml:space="preserve">
+    <value>Çat</value>
+  </data>
+  <data name="Titles.ForgetPassword" xml:space="preserve">
+    <value>Şifrənin bərpası</value>
+  </data>
+  <data name="Titles.Forum" xml:space="preserve">
+    <value>Forum</value>
+  </data>
+  <data name="Titles.Home" xml:space="preserve">
+    <value>Ana səhifə</value>
+  </data>
+  <data name="Titles.Login" xml:space="preserve">
+    <value>Daxil ol</value>
+  </data>
+  <data name="Titles.Messages" xml:space="preserve">
+    <value>İsmarıclar</value>
+  </data>
+  <data name="Titles.News" xml:space="preserve">
+    <value>Xəbərlər</value>
+  </data>
+  <data name="Titles.Notification" xml:space="preserve">
+    <value>Bildirişlər</value>
+  </data>
+  <data name="Titles.Notifications" xml:space="preserve">
+    <value>Bildirişlər</value>
+  </data>
+  <data name="Titles.Post" xml:space="preserve">
+    <value>Paylaşımlar</value>
+  </data>
+  <data name="Titles.Register" xml:space="preserve">
+    <value>Qeydiyyat</value>
+  </data>
+  <data name="Titles.SearchResults" xml:space="preserve">
+    <value>Axtarışın nəticələri</value>
+  </data>
+  <data name="Titles.Shelter" xml:space="preserve">
+    <value>Sığınacaqlar</value>
+  </data>
+  <data name="Titles.User" xml:space="preserve">
+    <value>İstifadəçilər</value>
+  </data>
+  <data name="Titles.Vet" xml:space="preserve">
+    <value>Baytarlar</value>
+  </data>
+  <data name="Translate" xml:space="preserve">
+    <value>Tərcümə et</value>
+  </data>
+  <data name="About" xml:space="preserve">
+    <value>Özünüz haqda</value>
+  </data>
+  <data name="Info" xml:space="preserve">
+    <value>Məlumat</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Xəta</value>
+  </data>
+  <data name="Errors.404" xml:space="preserve">
+    <value>Səhifə tapılmadı</value>
+  </data>
+  <data name="Errors.500" xml:space="preserve">
+    <value>Serverdə xəta baş verdi! Xahiş edirik, bizimlə əlaqə saxlayasız - support@havhav.az :(</value>
+  </data>
+  <data name="Errors.502" xml:space="preserve">
+    <value>Serverdə xəta baş verdi</value>
+  </data>
+  <data name="NoResult" xml:space="preserve">
+    <value>Heç bir məlumat tapılmadı</value>
+  </data>
+  <data name="Register.DOB_Hide" xml:space="preserve">
+    <value>Gizlət</value>
+  </data>
+  <data name="Charity.Name" xml:space="preserve">
+    <value>Ad</value>
+  </data>
+  <data name="FoundedDate" xml:space="preserve">
+    <value>Təsis tarixi</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Ad</value>
+  </data>
+  <data name="ChangeEmail" xml:space="preserve">
+    <value>Email dəyiş</value>
+  </data>
+  <data name="Menu.Account.Security" xml:space="preserve">
+    <value>Təhlükəsizlik</value>
+  </data>
+  <data name="Security" xml:space="preserve">
+    <value>Təhlükəsizlik</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Şifrə</value>
+  </data>
+  <data name="NotSpecified" xml:space="preserve">
+    <value>Məlumat qeyd edilməyib</value>
+  </data>
+  <data name="Security.PasswordChanged" xml:space="preserve">
+    <value>Şifrəniz uğurla dəyişdirildi! Əgər bu əməliyyat sizin tərəfinizdən həyata keçirilməyibsə , xahiş olunur, təcili olaraq bu barədə Havhav.az rəhbərliyinə məlumat verin!</value>
+  </data>
+  <data name="Security.EmailChanged" xml:space="preserve">
+    <value>Email uğurla dəyişdirildi! Əgər bu əməliyyat sizin tərəfinizdən həyata keçirilməyibsə , xahiş olunur, təcili olaraq bu barədə Havhav.az rəhbərliyinə məlumat verin!</value>
+  </data>
+  <data name="Register.NewPassword" xml:space="preserve">
+    <value>Yeni şifrə</value>
+  </data>
+  <data name="Titles.PasswordReset" xml:space="preserve">
+    <value>Şifrəni bərpa et</value>
+  </data>
+  <data name="SelectLanguage" xml:space="preserve">
+    <value>Dil seçin</value>
+  </data>
+  <data name="Account.NoInfo" xml:space="preserve">
+    <value>İstifadəçi özü haqda məlumat verməkdən imtina edib...)</value>
+  </data>
+  <data name="Account.RegisteredDate" xml:space="preserve">
+    <value>Havhav-a qoşulduğu tarix</value>
+  </data>
+  <data name="ChangeState" xml:space="preserve">
+    <value>Statusu dəyiş</value>
+  </data>
+  <data name="Loading" xml:space="preserve">
+    <value>Yüklənir</value>
+  </data>
+  <data name="Welcome" xml:space="preserve">
+    <value>Havhav.az-a xoş gəlmişsiniz! :)</value>
+  </data>
+  <data name="Welcome.Text" xml:space="preserve">
+    <value>&lt;p&gt;
+    Havhav.az-a xoş gəlmişsiniz! Havhav.az internet portalı Qafqazın ilk, tək və ən böyük heyvanlarsevərləri birləşdirən sosial şəbəkəsidir :)
+    Burada müxtəlif &lt;a href="/Ad"&gt;elanlar&lt;/a&gt; paylaşa, &lt;a href="/Shelter"&gt;sığınacaqlar&lt;/a&gt; və &lt;a href="/Vet"&gt;baytarlar&lt;/a&gt; haqda məlumat əldə edə və heyvanlar haqda baş vermiş &lt;a href="/Post"&gt;son xəbərləri&lt;/a&gt; izləyə bilərsiniz!
+&lt;/p&gt;
+&lt;p&gt;Bir çox hallarda heyvanlara yardım üçün müəyyən vəsait toplanması tələb olunur. Bunun üçün saytda &lt;a href="/Charity"&gt;xüsusi bölmə var&lt;/a&gt;. Proseslərin maksimum şəffaf olması üçün göndərilən hər bir vəsait hesabat şəklində (göndərənin adı, çekin şəkili və göndərilən məbləğin miqdarı) istifadəçilərə təqdim olunur. &lt;/p&gt;
+&lt;p&gt;
+    Həmçinin saytda mövcud olan &lt;a href="/Forum"&gt;"Forum"&lt;/a&gt; bölməsində, heyvanlarla bağlı istəlinən mövzuda sual verib və ya sualları cavablandıra bilərsiniz.
+    Bütün bunlardan əlavə real-time rejimdə heyvansevərləri birləşdirən &lt;a href="/Home/Chat"&gt;canlı çata&lt;/a&gt; da girib, yeni dostlar tapa bilərsiniz! :)
+    
+&lt;/p&gt;
+&lt;p&gt;
+Beləliklə, birlikdə biz daha güclüyük! :)
+&lt;/p&gt;
+
+&lt;p&gt;
+    &lt;i class="fas fa-bars header-icons orange"&gt;&lt;/i&gt; işarəsinə klik edərək saytın menyusuna daxil ola bilərsiniz.
+&lt;/p&gt;
+
+
+P.S&lt;br&gt;
+Saytı sıfırdan tamami ilə tək işlədiyim üçün (dizayn, kodinq, test, tərcümə və s.) bəzi xətalar və səhvlər aşkar edilə bilər. Xahiş edirəm ki, belə bir şey ilə rastlaşarsanız hasan.shans@gmail.com ünvanına bu barədə məlumat (skrin ilə bir yerdə) verəsiniz. Həmçinin, saytda mövcud olmayan sığınacaq və baytarlar haqda məlumatınız varsa - göndərin gəlsin! Bununla, siz Havhav.az-ın təkminləşməsində iştirak etmiş olacaqsınız! :)
+
+&lt;br&gt;&lt;br&gt;
+Təşəkkürlər! Hav-hav  &lt;i class="fas fa-paw" style="color: orange;"&gt;&lt;/i&gt; :)
+
+&lt;br&gt;&lt;br&gt;
+ &lt;b class="orange" style="float:right;"&gt;- Həsən Şans, 
+    &lt;a href="http://www.hasanshans.com" target="_blank" class="orange" style="text-decoration: underline;"&gt;
+         Havhav.az-ın yaradıcısı
+    &lt;/a&gt;
+&lt;/b&gt;</value>
+  </data>
+  <data name="Account.AddInfo" xml:space="preserve">
+    <value>Özünüz haqda daha ətraflı məlumat vermək üçün &lt;a href="/Account/Edit"&gt; "Məlumatları dəyiş"&lt;/a&gt; bölməsinə girin.</value>
+  </data>
+  <data name="Contacts.Phone" xml:space="preserve">
+    <value>Nömrə</value>
+  </data>
+  <data name="Menu.Chat" xml:space="preserve">
+    <value>Canlı çat</value>
+  </data>
+  <data name="ShowPrevious" xml:space="preserve">
+    <value>Əvvəlkiləri göstər</value>
+  </data>
+  <data name="Comment.ShowPrevious" xml:space="preserve">
+    <value>Öncəkiləri göstər</value>
+  </data>
+  <data name="Chat.First" xml:space="preserve">
+    <value>İlk mesajı siz yazın! :)</value>
+  </data>
+  <data name="Register.Name" xml:space="preserve">
+    <value>Ad</value>
+  </data>
+  <data name="Contacts.Address" xml:space="preserve">
+    <value>Ünvan</value>
+  </data>
+  <data name="OrderNumber" xml:space="preserve">
+    <value>Sıralama nömrəsi</value>
+  </data>
+</root>

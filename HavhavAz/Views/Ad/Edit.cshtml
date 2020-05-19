@@ -1,0 +1,125 @@
+﻿@using HavhavAz.Models.AdModels
+@model AdViewModel
+
+@{
+    ViewBag.Title = SharedLocalizer["Titles.Ad"];
+
+    Ad ad = Model.Ad;
+
+}
+
+
+@section Content{
+    <div class="row m-auto">
+        <div class="col-md-12 box">
+            <form method="post" enctype="multipart/form-data" asp-controller="Ad" asp-action="Edit" asp-antiforgery="true" data-parsley-validate>
+
+                <input asp-for="Ad.ID" type="hidden" />
+
+                <div class="col-md-12 text-center">
+                    <h4 class="fb-title">@SharedLocalizer["Edit"]</h4>
+                </div>
+
+                <vc:images action="Edit" path="ads/@ad.ID">
+                </vc:images>
+
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <span asp-validation-for="FormImages"></span>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="offset-2 col-md-8 col-sm-8 col-8">
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <p class="fb-title">@SharedLocalizer["GeneralInfo"]:</p>
+                            </div>
+                            <div class="col-md-6">
+                                <input asp-for="Ad.Breed" type="text" class="fb-input-text" placeholder="@SharedLocalizer["Ad.Breed"]..."
+                                       data-parsley-maxlength="50" data-parsley-maxlength-message="@ValidationLocalizer["StringLength", "", 50]"
+                                       data-parsley-minlength="3" data-parsley-minlength-message="@ValidationLocalizer["StringLengthWithMin", "", 3, 50]" />
+                                <span asp-validation-for="Ad.Breed"></span>
+                            </div>
+                            <div class="col-md-6">
+                                <input asp-for="Ad.Color" type="text" class="fb-input-text" placeholder="@SharedLocalizer["Ad.Color"]..."
+                                       data-parsley-maxlength="50" data-parsley-maxlength-message="@ValidationLocalizer["StringLength", "", 50]"
+                                       data-parsley-minlength="2" data-parsley-minlength-message="@ValidationLocalizer["StringLengthWithMin", "", 2, 50]" />
+                                <span asp-validation-for="Ad.Color"></span>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <p class="fb-title text-center">@SharedLocalizer["Ad.Gender"]:</p>
+                                    </div>
+                                    <div class="col-md-12 text-center">
+                                        <i class="fas fa-venus orange ad-gender"></i>
+                                        <label class="switch">
+                                            <input type="checkbox" id="gender" class="switcher" @(ad.Gender ? "checked" : "") name="Ad.Gender" value="@ad.Gender">
+                                            <span class="slider round"></span>
+                                        </label>
+                                        <i class="fas fa-mars orange ad-gender"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <p class="fb-title text-center">@SharedLocalizer["Ad.Age"]:</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input asp-for="Ad.AgeYear" type="number" max="20" class="fb-input-text" placeholder="@SharedLocalizer["Ad.AgeYear"]:"
+                                               data-parsley-max-message="@ValidationLocalizer["Invalid"]" />
+                                        <span asp-validation-for="Ad.AgeYear"></span>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input asp-for="Ad.AgeMonth" max="12" type="number" class="fb-input-text" placeholder="@SharedLocalizer["Ad.AgeMonth"]:"
+                                               data-parsley-max-message="@ValidationLocalizer["Invalid"]" />
+                                        <span asp-validation-for="Ad.AgeMonth"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="offset-2 col-md-8 col-sm-8 col-8">
+                        <div class="col-md-12 text-center">
+                            <p class="fb-title">@SharedLocalizer["AdditionalInfo"]:</p>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input asp-for="Ad.Name" type="text" class="fb-input-text" placeholder="@SharedLocalizer["Name"]..."
+                                       required data-parsley-required-message="@ValidationLocalizer["Required"]"
+                                       data-parsley-maxlength="50" data-parsley-maxlength-message="@ValidationLocalizer["StringLength", "", 50]" 
+                                    data-parsley-minlength="3" data-parsley-minlength-message="@ValidationLocalizer["StringLengthWithMin", "", 3, 50]" />
+                                <span asp-validation-for="Ad.Name"></span>
+                            </div>
+                            <div class="col-md-6">
+                                <select asp-for="Ad.AdType" asp-items="Model.AdTypes" class="fb-input-text"></select>
+                                <span asp-validation-for="Ad.AdType"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <textarea asp-for="Ad.Info" class="fb-input-text fb-textarea" placeholder="@SharedLocalizer["Info"]..."
+                                          required data-parsley-required-message="@ValidationLocalizer["Required"]"
+                                          data-parsley-maxlength="6000" data-parsley-maxlength-message="@ValidationLocalizer["StringLength", "", 6000]">
+                                @ad.Info
+                                </textarea>
+                                <span asp-validation-for="Ad.Info"></span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <input type="submit" class="button orange clickable" value="@SharedLocalizer["Save"]">
+            </form>
+        </div>
+    </div>
+
+}
+
+

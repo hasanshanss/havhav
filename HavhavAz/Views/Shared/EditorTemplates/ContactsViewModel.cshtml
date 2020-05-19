@@ -1,0 +1,95 @@
+﻿@using HavhavAz.Models.ContactsModels
+@model ContactsViewModel
+
+@{
+    string[] DenyList = Model.NotDisplay;
+}
+
+<div class="row">
+    <div class="col-md-12 text-center">
+        <p class="fb-title">@SharedLocalizer["Contacts"]:</p>
+    </div>
+
+    @if (!DenyList.Contains("address"))
+    {
+        <div colsize="6" class="input-group mb-2">
+            <div class='input-group-prepend'>
+                <span class='input-group-text'>
+                    <i class='fas fa-map-marker-alt orange'></i>
+                </span>
+            </div>
+            <input asp-for="Address.Location" class='fb-input-text form-control' placeholder='@SharedLocalizer["Contacts.Address"]'
+                   data-parsley-maxlength="1000" data-parsley-maxlength-message="@ValidationLocalizer["StringLength", "", 1000]"
+                   data-parsley-errors-container="#address-error" />
+        </div>
+        <span asp-validation-for="Address.Location"></span>
+        <span id="address-error"></span>
+    }
+
+    @if (!DenyList.Contains("phone"))
+    {
+        <div colsize="6" class="input-group mb-2">
+            <div class='input-group-prepend'>
+                <span class='input-group-text'>
+                    <i class='fas fa-mobile-alt orange'></i>
+                </span>
+            </div>
+            <input asp-for="Contacts.Phone" class='fb-input-text form-control' placeholder='@SharedLocalizer["Contacts.Phone"]'
+                   data-parsley-maxlength="50" data-parsley-maxlength-message="@ValidationLocalizer["StringLength", "", 50]"
+                   data-parsley-minlength="6" data-parsley-minlength-message="@ValidationLocalizer["StringLengthWithMin", "", 6, 50]"
+                   data-parsley-errors-container="#phone-error" />
+        </div>
+        <span asp-validation-for="Contacts.Phone"></span>
+        <span id="phone-error"></span>
+    }
+
+    @if (!DenyList.Contains("facebook"))
+    {
+        <div colsize="6" class="input-group mb-2">
+            <div class='input-group-prepend'>
+                <span class='input-group-text'>
+                    <i class='fab fa-facebook orange'></i>
+                </span>
+            </div>
+            <input asp-for="Contacts.Facebook" class='fb-input-text form-control' placeholder='Facebook'
+                   data-parsley-maxlength="25" data-parsley-maxlength-message="@ValidationLocalizer["StringLength", "", 25]"
+                   data-parsley-minlength="6" data-parsley-minlength-message="@ValidationLocalizer["StringLengthWithMin", "", 6, 25]"
+                   data-parsley-errors-container="#facebook-error" />
+        </div>
+        <span asp-validation-for="Contacts.Facebook"></span>
+        <span id="facebook-error"></span>
+    }
+
+    @if (!DenyList.Contains("whatsapp"))
+    {
+        <div colsize="6" class="input-group mb-2">
+            <div class='input-group-prepend'>
+                <span class='input-group-text'>
+                    <i class='fab fa-whatsapp orange'></i>
+                </span>
+            </div>
+            <input asp-for="Contacts.Whatsapp" class='fb-input-text form-control' placeholder='Whatsapp'
+                   data-parsley-maxlength="25" data-parsley-maxlength-message="@ValidationLocalizer["StringLength", "", 25]"
+                   data-parsley-minlength="6" data-parsley-minlength-message="@ValidationLocalizer["StringLengthWithMin", "", 6, 25]"
+                   data-parsley-errors-container="#whatsapp-error" />
+        </div>
+        <span asp-validation-for="Contacts.Whatsapp"></span>
+        <span id="whatsapp-error"></span>
+    }
+    @if (!DenyList.Contains("instagram"))
+    {
+        <div colsize="6" class="input-group mb-2">
+            <div class='input-group-prepend'>
+                <span class='input-group-text'>
+                    <i class='fab fa-instagram orange'></i>
+                </span>
+            </div>
+            <input asp-for="Contacts.Instagram" class='fb-input-text form-control' placeholder='Instagram'
+                   data-parsley-maxlength="25" data-parsley-maxlength-message="@ValidationLocalizer["StringLength", "", 25]"
+                   data-parsley-minlength="6" data-parsley-minlength-message="@ValidationLocalizer["StringLengthWithMin", "", 6, 25]" 
+                   data-parsley-errors-container="#instagram-error" />
+        </div>
+        <span asp-validation-for="Contacts.Instagram"></span>
+        <span id="instagram-error"></span>
+    }
+</div>

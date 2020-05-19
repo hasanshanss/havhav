@@ -1,0 +1,55 @@
+﻿@using HavhavAz.Models.ContactsModels
+@model ContactsViewModel
+
+@{ 
+    Contacts contacts = Model.Contacts;
+    Address address = Model.Address;
+}
+ 
+<div class="row mt-4">
+    <div class="col-md-12 col-sm-12 justify-content-center">
+        <ul class="contacts-list @Model.ClassList">
+
+            @if (address != null)
+            {
+                <li>
+                    <i class="fas fa-map-marker-alt orange"></i> @address.Location
+                </li>
+            }
+
+            @if (contacts?.Phone != null)
+            {
+                <li>
+                    <i class="fas fa-mobile-alt orange"></i> @contacts.Phone
+                </li>
+            }
+
+            @if (contacts?.Whatsapp != null)
+            {
+                <li>
+                    <i class="fab fa-whatsapp orange"></i> @contacts.Whatsapp
+                </li>
+            }
+
+            @if (contacts?.Facebook != null)
+            {
+                <li>
+                    <i class="fab fa-facebook orange"></i> 
+                    <a href="https://www.facebook.com/@contacts.Facebook" target="_blank">
+                        @contacts.Facebook
+                    </a>
+                </li>
+            }
+
+            @if (contacts?.Instagram != null)
+            {
+                <li>
+                    <i class="fab fa-instagram orange"></i> 
+                    <a href="https://www.instagram.com/@contacts.Instagram" target="_blank">
+                        @contacts.Instagram
+                    </a>
+                </li>
+            }
+        </ul>
+    </div>
+</div>

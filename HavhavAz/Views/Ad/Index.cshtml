@@ -1,0 +1,229 @@
+﻿@using HavhavAz.Models
+@using HavhavAz.Models.AdModels
+@using System.Web
+@using static HavhavAz.Models.UserModels.User;
+ 
+@model IndexViewModel<AdViewModel>
+
+@{
+    ViewBag.Title = SharedLocalizer["Titles.Ad"];
+    var NotSpecified = $"<i>{SharedLocalizer["NotSpecified"].Value}</i>";
+
+
+    //check for admin
+    bool isAdmin = Context.GetCurrentUserRole() == Roles.Admin;
+
+    //if "state" query string is not defined, then assign state as 1 (approved)
+    string state_query_string = Context.Request.Query["state"].ToString();
+    Byte.TryParse(state_query_string, out byte state);
+    state = String.IsNullOrWhiteSpace(state_query_string) ? (byte)1 : state;
+
+    //set state in SelectList
+    Model.SelectedState = state;
+}
+
+@section UnderTitle{
+    <div class="col-md-12 text-center m-3">
+        <div class="row justify-content-center">
+            @if (!isAdmin)
+            {
+                <div class="col-md-4 mb-4 text-md-right pr-md-0 ml-md-5">
+                    <a href="/Ad" class="no-style button @(state == 0 ? "orange" : "white") clickable m-1">
+                        @SharedLocalizer["Ads.Pending"]
+                    </a>
+                </div>
+                <div class="col-md-4 text-md-left pl-md-0">
+                    <a href="/Ad?state=0" class="no-style button @(state == 0 ? "white" : "orange") clickable m-1">
+                        @SharedLocalizer["Ads.Completed"]
+                    </a>
+                </div>
+            }
+            else
+            {
+                <div class="col-md-12 text-left">
+                    @if (state == 2)
+                    {
+
+                        <button class="button bg-success clickable" id="approve-all" data-model-name="Ad">
+                            @SharedLocalizer["ApproveAll"]
+                        </button>
+                    }
+                    else if (state == 5)
+                    {
+
+                        <button class="button bg-danger clickable" id="delete-all" data-model-name="Ad">
+                            @SharedLocalizer["DeleteAll"]
+                        </button>
+                    }
+                    <select asp-for="SelectedState" asp-items="_stateSelectList"
+                            name="state" class="fb-input-text" style="width:auto;"></select>
+                </div>
+            }
+        </div>
+
+        @if (User.Identity.IsAuthenticated)
+        {
+            <div class="row mt-4">
+                <div class="col-md-12 text-right">
+                    <a class="button clickable orange no-style mt-4" href="/Ad/Create?at=@Context.Request.Query["ati"]">@SharedLocalizer["Create"]</a>
+                </div>
+            </div>
+        }
+    </div>
+}
+
+@section Content{
+
+    @if (Model.ModelList != null && Model.ModelList.Count > 0)
+    {
+        @Html.AntiForgeryToken()
+        @foreach (AdViewModel avm in Model.ModelList)
+        {
+            Ad ad = avm.Ad;
+            var id = ad.ID.ToString();
+            bool isMine = avm.Ad.UserId == Context.GetCurrentUserId();
+
+            <div class="row m-auto">
+                <div class="col-md-12 box" id="ad-@ad.ID">
+                    <div class="row">
+                        <div class="col-md-4 text-center">
+                            <div class="cb-img-box">
+                                <img alt="Azərbaycanda heyvansevərlər üçün ilk və tək sosial şəbəkə" src=@Url.Content($"~/images/{GetMainPic("ads", id, id)}") class="cb-img">
+                            </div>
+                            <div class="row">
+                                <div class="col-12 col-md-12">
+                                    <div style="float:left;">
+                                        <a href="Account/Index/@avm.Publisher" class="orange">
+                                            <span style="font-size:14px">
+                                                <i class="fa fa-pencil "></i>
+                                                @avm.Publisher
+                                            </span>
+                                        </a>
+                                    </div>
+                                    <div style="float:right;">
+                                        <span class="date" style="font-size:14px">
+                                            <i class="fa fa-calendar orange"></i>
+                                            @ad.CreatedDate.ToString("dd.MM.yyyy")
+                                        </span>
+                                        <span class="date" style="font-size:14px">
+                                            <i class="far fa-clock orange"></i>
+                                            @ad.CreatedDate.ToString("HH:mm")
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8 tab-box">
+                            <h2 class="cb-title wrappable w-50">
+                                @ad.Name
+                            </h2>
+                            <div class="cb-content">
+                                <nav class="nav nav-tabs" id="nav-tab" role="tablist" style="flex-direction: row-reverse;">
+
+                                    <a class="nav-item nav-link" id="nav-gallery-tab" data-toggle="tab" href="#nav-gallery-@ad.ID" role="tab" aria-controls="gallery">
+                                        <i class="far fa-images cb-icons"></i>
+                                    </a>
+
+                                    <a class="nav-item nav-link" id="nav-info-tab" data-toggle="tab" href="#nav-info-@ad.ID" role="tab" aria-controls="info">
+                                        <i class="fas fa-info-circle cb-icons"></i>
+                                    </a>
+                                    <a class="nav-item nav-link active" id="nav-features-tab" data-toggle="tab" href="#nav-features-@ad.ID" role="tab" aria-controls="features">
+                                        <i class="fas fa-bars cb-icons"></i>
+                                    </a>
+                                </nav>
+                                <div class="tab-content" id="nav-tabContent">
+                                    <div class="tab-pane fade active show" id="nav-features-@ad.ID" role="tabpanel" aria-labelledby="nav-features-tab" aria-expanded="true">
+                                        <div class="cb-info-text-box text-center" style="margin-top:15px;">
+                                            <div class="row" style="margin:10px;">
+                                                <div class="col-md-6">
+                                                    <h4 class="orange">@SharedLocalizer["Ad.Gender"]:</h4>
+                                                    <i class="fas fa-@(ad.Gender ? "mars" : "venus") orange ad-gender"></i>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <h4 class="orange">@SharedLocalizer["Ad.Color"]:</h4>
+                                                    @(String.IsNullOrEmpty(ad.Color) ? NotSpecified : ad.Color)
+                                                </div>
+                                            </div>
+                                            <div class="row" style="margin:10px; margin-top:25px;">
+                                                <div class="col-md-6">
+                                                    <h4 class="orange">@SharedLocalizer["Ad.Breed"]:</h4>
+                                                    @(String.IsNullOrEmpty(ad.Breed) ? NotSpecified : ad.Breed)
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <h4 class="orange">@SharedLocalizer["Ad.AgeYear"]:</h4>
+                                                    @ad.AgeYear @SharedLocalizer["Ad.AgeYear"] @ad.AgeMonth @SharedLocalizer["Ad.AgeMonth"]
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="nav-info-@ad.ID" role="tabpanel" aria-labelledby="nav-info-tab">
+                                        <p class="p-2 cb-content with-break">@ad.Info</p>
+                                    </div>
+                                    <div class="tab-pane fade" id="nav-gallery-@ad.ID" role="tabpanel" aria-labelledby="nav-gallery-tab">
+                                        <div class="row justify-content-center align-items-center" style="height:250px;" id="gallery-loader-@ad.ID"> 
+                                            <div class="col-md-12 text-center">
+                                                <img src="~/images/loader.gif" style="width:70px; height:50px" />
+                                                <span class="orange">@SharedLocalizer["Loading"]...</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="cb-footer">
+                                <div class="row fb-title text-right">
+                                    <div class="col-md-12">
+                                        @if (isAdmin)
+                                        {
+                                            <a class="orange admin-button no-style" style="color:#f49e42" href="/Ad/Edit/@id">
+                                                <i class="far fa-edit"></i>
+                                            </a>
+                                        }
+                                        @if (isMine || isAdmin)
+                                        {
+                                            <a class="orange admin-button no-style change-state" style="padding-right:0px; color:#f49e42"
+                                               href="javascript:void(0);" data-action="Finished" data-model-name="Ad" data-model-id="@id">
+                                                <i class="fas fa-check"></i>
+                                            </a>
+                                            <a class="orange admin-button no-style change-state" style="padding-right:0px; color:#f49e42"
+                                               href="javascript:void(0);" data-action="Deleted" data-model-name="Ad" data-admin="@isAdmin" data-model-id="@id">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </a>
+
+                                        }
+                                        <a href="/Post?ptn=Ad&si=@id" style="color:#f49e42" class="admin-button no-style">
+                                            <i class="fas fa-book-open"></i>
+                                            (@avm.PostCount)
+                                        </a>
+                                    </div>
+                                    <div class="col-md-12">
+                                        @if (isAdmin)
+                                        {
+                                            <select asp-for="SelectedState" asp-items="_stateSelectList"
+                                                    name="private-state" data-model-id="@id" data-model-name="Ad" class="fb-input-text" style="width:auto;"></select>
+                                        }
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+        <page-link page-model="Model.PageViewModel" url="/Ad/Index@(Context.Request.QueryString.Value)"></page-link>
+    }
+    else
+    {
+        <vc:error-page error="@SharedLocalizer[$"NoResult"].Value"></vc:error-page>
+    }
+}
+
+
+
+@section addJs{
+    <script src="~/js/ajaxGallery.js"></script>
+    <script>
+        ajax_gallery_path = "ads";
+    </script>
+}

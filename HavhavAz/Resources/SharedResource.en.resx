@@ -1,0 +1,636 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Account.BirthDate" xml:space="preserve">
+    <value>Date of birth</value>
+  </data>
+  <data name="Account.MessageModal.Placeholder" xml:space="preserve">
+    <value>Hi :)</value>
+  </data>
+  <data name="Account.MessageModal.Title" xml:space="preserve">
+    <value>Send a message</value>
+  </data>
+  <data name="Account.PostButtons.Ads" xml:space="preserve">
+    <value>Announcements</value>
+  </data>
+  <data name="Account.PostButtons.Charities" xml:space="preserve">
+    <value>Charity</value>
+  </data>
+  <data name="Account.PostButtons.News" xml:space="preserve">
+    <value>News</value>
+  </data>
+  <data name="Account.PostButtons.Title" xml:space="preserve">
+    <value>Posts</value>
+  </data>
+  <data name="Account.SendMessage" xml:space="preserve">
+    <value>Send a message</value>
+  </data>
+  <data name="Ad.Age" xml:space="preserve">
+    <value>Age</value>
+  </data>
+  <data name="Ad.AgeMonth" xml:space="preserve">
+    <value>Month</value>
+  </data>
+  <data name="Ad.AgeYear" xml:space="preserve">
+    <value>Year</value>
+  </data>
+  <data name="Ad.Breed" xml:space="preserve">
+    <value>Breed</value>
+  </data>
+  <data name="Ad.Color" xml:space="preserve">
+    <value>Color</value>
+  </data>
+  <data name="Ad.Gender" xml:space="preserve">
+    <value>Gender</value>
+  </data>
+  <data name="AdditionalInfo" xml:space="preserve">
+    <value>Additional information</value>
+  </data>
+  <data name="Ads.Completed" xml:space="preserve">
+    <value>Rescued</value>
+  </data>
+  <data name="Ads.Pending" xml:space="preserve">
+    <value>Waiting for help</value>
+  </data>
+  <data name="Charities.Completed" xml:space="preserve">
+    <value>Rescued</value>
+  </data>
+  <data name="Charities.Pending" xml:space="preserve">
+    <value>Waiting for help</value>
+  </data>
+  <data name="Charity.BankCredentials" xml:space="preserve">
+    <value>Bank credentials</value>
+  </data>
+  <data name="Charity.BankCredentials.Placeholder" xml:space="preserve">
+    <value>Bank accounts</value>
+  </data>
+  <data name="Charity.Info.Placeholder" xml:space="preserve">
+    <value>Additional information</value>
+  </data>
+  <data name="Charity.Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Charity.Name.Placeholder" xml:space="preserve">
+    <value>Name...</value>
+  </data>
+  <data name="Charity.RequiredAmount.Placeholder" xml:space="preserve">
+    <value>Required amount</value>
+  </data>
+  <data name="Chat.Coucou" xml:space="preserve">
+    <value>Say hello! :)</value>
+  </data>
+  <data name="Chat.Hello" xml:space="preserve">
+    <value>Hi! :)</value>
+  </data>
+  <data name="Comment" xml:space="preserve">
+    <value>Comment :)</value>
+  </data>
+  <data name="Comment.First" xml:space="preserve">
+    <value>Comment first! :)</value>
+  </data>
+  <data name="Comment.Placeholder" xml:space="preserve">
+    <value>Comment...</value>
+  </data>
+  <data name="Comment.ShowMore" xml:space="preserve">
+    <value>Show more</value>
+  </data>
+  <data name="Comments.Reply" xml:space="preserve">
+    <value>Cavab ver</value>
+  </data>
+  <data name="Contacts" xml:space="preserve">
+    <value>Contacts</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Redact</value>
+  </data>
+  <data name="Forum.SelectTopic" xml:space="preserve">
+    <value>Topic</value>
+  </data>
+  <data name="Gallery" xml:space="preserve">
+    <value>Gallery</value>
+  </data>
+  <data name="Gender" xml:space="preserve">
+    <value>Gender</value>
+  </data>
+  <data name="GeneralInfo" xml:space="preserve">
+    <value>General information</value>
+  </data>
+  <data name="Header.MainText" xml:space="preserve">
+    <value>...they also love us :)</value>
+  </data>
+  <data name="Journal" xml:space="preserve">
+    <value>Journal</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="Login.Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="Login.PasswordReset" xml:space="preserve">
+    <value>Forget password?</value>
+  </data>
+  <data name="Login.Username" xml:space="preserve">
+    <value>Username</value>
+  </data>
+  <data name="MainInfo" xml:space="preserve">
+    <value>General information</value>
+  </data>
+  <data name="MainPic" xml:space="preserve">
+    <value>Main photo</value>
+  </data>
+  <data name="Menu.Account" xml:space="preserve">
+    <value>Account</value>
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>Change password</value>
+  </data>
+  <data name="Menu.Account.Edit" xml:space="preserve">
+    <value>Redact</value>
+  </data>
+  <data name="Menu.Account.Index" xml:space="preserve">
+    <value>Personal account</value>
+  </data>
+  <data name="Menu.Account.Logout" xml:space="preserve">
+    <value>Logout</value>
+  </data>
+  <data name="Menu.Ad" xml:space="preserve">
+    <value>Announcements</value>
+  </data>
+  <data name="Menu.Ad.Charity" xml:space="preserve">
+    <value>Charity</value>
+  </data>
+  <data name="Menu.Ad.LFO" xml:space="preserve">
+    <value>Waiting for owner</value>
+  </data>
+  <data name="Menu.Ad.Mating" xml:space="preserve">
+    <value>Mating</value>
+  </data>
+  <data name="Menu.Ad.Wanted" xml:space="preserve">
+    <value>Missing</value>
+  </data>
+  <data name="Menu.Forum" xml:space="preserve">
+    <value>Forum</value>
+  </data>
+  <data name="Menu.News" xml:space="preserve">
+    <value>News</value>
+  </data>
+  <data name="Menu.Shelter" xml:space="preserve">
+    <value>Shelters</value>
+  </data>
+  <data name="Menu.Vet" xml:space="preserve">
+    <value>Vets</value>
+  </data>
+  <data name="Messages.Delete.Success" xml:space="preserve">
+    <value>Successfully deleted!</value>
+  </data>
+  <data name="Messages.Edit.Success" xml:space="preserve">
+    <value>Successfully edited!</value>
+  </data>
+  <data name="Messages.ErrorOccurred" xml:space="preserve">
+    <value>Error!</value>
+  </data>
+  <data name="Messages.Inbox" xml:space="preserve">
+    <value>Inbox</value>
+  </data>
+  <data name="Messages.Outbox" xml:space="preserve">
+    <value>Outbox</value>
+  </data>
+  <data name="NotificationType.Comment" xml:space="preserve">
+    <value>comment your post</value>
+  </data>
+  <data name="NotificationType.Comment.InvolvedUsers" xml:space="preserve">
+    <value>şərh etdiyiniz postu şərh edib</value>
+  </data>
+  <data name="NotificationType.Like" xml:space="preserve">
+    <value>sizin postu bəyənib</value>
+  </data>
+  <data name="NotificationType.Message" xml:space="preserve">
+    <value>sent a message</value>
+  </data>
+  <data name="NotificationType.Receipt" xml:space="preserve">
+    <value> - received new receipt</value>
+  </data>
+  <data name="NoTranslation" xml:space="preserve">
+    <value>There is no information for selected language.</value>
+  </data>
+  <data name="PasswordReset.MailMessage" xml:space="preserve">
+    <value>Dear {0}! Your request to reset password has been accepted. Please, &lt;a href="www.havhav.az/Account/ResetPassword?rpc={1}&amp;username={2}"&gt;choose new password.&lt;/a&gt;If you have not requested to reset password, then just ignore this message.&lt;br&gt;&lt;br&gt;&lt;b&gt;The link is active only for 24 hours!&lt;/b&gt;</value>
+  </data>
+  <data name="PasswordReset.PleaseEnterUsername" xml:space="preserve">
+    <value>Please enter username.</value>
+  </data>
+  <data name="PasswordReset.ResetButton" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="Post.Comment" xml:space="preserve">
+    <value>Comment</value>
+  </data>
+  <data name="Post.Content" xml:space="preserve">
+    <value>Content</value>
+  </data>
+  <data name="Post.Title" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="ReadMore" xml:space="preserve">
+    <value>More</value>
+  </data>
+  <data name="Receipt.AddBtn" xml:space="preserve">
+    <value>Send a receipt</value>
+  </data>
+  <data name="Receipt.Amount" xml:space="preserve">
+    <value>Sent amount</value>
+  </data>
+  <data name="Receipt.Date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="Receipt.Form.Amount.Label" xml:space="preserve">
+    <value>Sent amount</value>
+  </data>
+  <data name="Receipt.Form.Name.Label" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Receipt.Form.Name.Placeholder" xml:space="preserve">
+    <value>Anonym</value>
+  </data>
+  <data name="Receipt.Form.Photo.Label" xml:space="preserve">
+    <value>Photo of receipt</value>
+  </data>
+  <data name="Receipt.Image" xml:space="preserve">
+    <value>Photo of receipt</value>
+  </data>
+  <data name="Receipt.ListBtn" xml:space="preserve">
+    <value>List of helped people</value>
+  </data>
+  <data name="Receipt.ListTitle" xml:space="preserve">
+    <value>List of helped people</value>
+  </data>
+  <data name="Receipt.Sender" xml:space="preserve">
+    <value>Sender name</value>
+  </data>
+  <data name="Receipt.Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="Register.About" xml:space="preserve">
+    <value>Information about yourself</value>
+  </data>
+  <data name="Register.Birthdate" xml:space="preserve">
+    <value>Date of birth</value>
+  </data>
+  <data name="Register.Gender" xml:space="preserve">
+    <value>Gender</value>
+  </data>
+  <data name="Register.Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Register.Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="Register.PasswordConfirmation" xml:space="preserve">
+    <value>Repeat password</value>
+  </data>
+  <data name="Register.Submit" xml:space="preserve">
+    <value>Registrate</value>
+  </data>
+  <data name="Register.Username" xml:space="preserve">
+    <value>Username</value>
+  </data>
+  <data name="Registration" xml:space="preserve">
+    <value>Registration</value>
+  </data>
+  <data name="RememberMe" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="Reset" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="Search.News" xml:space="preserve">
+    <value>Search news</value>
+  </data>
+  <data name="Search.User" xml:space="preserve">
+    <value>Search users</value>
+  </data>
+  <data name="Send" xml:space="preserve">
+    <value>Send</value>
+  </data>
+  <data name="ShowMore" xml:space="preserve">
+    <value>Show more</value>
+  </data>
+  <data name="Titles.Account" xml:space="preserve">
+    <value>Account</value>
+  </data>
+  <data name="Titles.Ad" xml:space="preserve">
+    <value>Announcements</value>
+  </data>
+  <data name="Titles.Charity" xml:space="preserve">
+    <value>Charity</value>
+  </data>
+  <data name="Titles.Chat" xml:space="preserve">
+    <value>Chat</value>
+  </data>
+  <data name="Titles.ForgetPassword" xml:space="preserve">
+    <value>Reset password</value>
+  </data>
+  <data name="Titles.Forum" xml:space="preserve">
+    <value>Forum</value>
+  </data>
+  <data name="Titles.Home" xml:space="preserve">
+    <value>Home page</value>
+  </data>
+  <data name="Titles.Login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="Titles.Messages" xml:space="preserve">
+    <value>Messages</value>
+  </data>
+  <data name="Titles.News" xml:space="preserve">
+    <value>News</value>
+  </data>
+  <data name="Titles.Notification" xml:space="preserve">
+    <value>Notificaitons</value>
+  </data>
+  <data name="Titles.Notifications" xml:space="preserve">
+    <value>Notificaitons</value>
+  </data>
+  <data name="Titles.Post" xml:space="preserve">
+    <value>Posts</value>
+  </data>
+  <data name="Titles.Register" xml:space="preserve">
+    <value>Registration</value>
+  </data>
+  <data name="Titles.SearchResults" xml:space="preserve">
+    <value>Results of search</value>
+  </data>
+  <data name="Titles.Shelter" xml:space="preserve">
+    <value>Shelters</value>
+  </data>
+  <data name="Titles.User" xml:space="preserve">
+    <value>Users</value>
+  </data>
+  <data name="Titles.Vet" xml:space="preserve">
+    <value>Vets</value>
+  </data>
+  <data name="Translate" xml:space="preserve">
+    <value>Translate</value>
+  </data>
+  <data name="About" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="Info" xml:space="preserve">
+    <value>Information</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="Errors.404" xml:space="preserve">
+    <value>Page  not found</value>
+  </data>
+  <data name="Errors.500" xml:space="preserve">
+    <value>Server error occured! Please contact us - support@havhav.az :(</value>
+  </data>
+  <data name="Errors.502" xml:space="preserve">
+    <value>Server error</value>
+  </data>
+  <data name="NoResult" xml:space="preserve">
+    <value>There is no result</value>
+  </data>
+  <data name="Register.DOB_Hide" xml:space="preserve">
+    <value>Hide</value>
+  </data>
+  <data name="FoundedDate" xml:space="preserve">
+    <value>Date of foundation</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="ChangeEmail" xml:space="preserve">
+    <value>Change email</value>
+  </data>
+  <data name="Menu.Account.Security" xml:space="preserve">
+    <value>Security</value>
+  </data>
+  <data name="Security" xml:space="preserve">
+    <value>Security</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="NotSpecified" xml:space="preserve">
+    <value>The information isn't provided</value>
+  </data>
+  <data name="Security.PasswordChanged" xml:space="preserve">
+    <value>Your password has been changed successfully! Please, inform us urgently if you have not changed it!</value>
+  </data>
+  <data name="Security.EmailChanged" xml:space="preserve">
+    <value>Your email has been changed successfully! Please, inform us urgently if you have not changed it!</value>
+  </data>
+  <data name="Register.NewPassword" xml:space="preserve">
+    <value>New password</value>
+  </data>
+  <data name="Titles.PasswordReset" xml:space="preserve">
+    <value>Reset password</value>
+  </data>
+  <data name="SelectLanguage" xml:space="preserve">
+    <value>Choose language</value>
+  </data>
+  <data name="Account.NoInfo" xml:space="preserve">
+    <value>User prefered to leave empty this section...)</value>
+  </data>
+  <data name="Account.RegisteredDate" xml:space="preserve">
+    <value>Date of connection to Havhav</value>
+  </data>
+  <data name="String" xml:space="preserve">
+    <value>Change status</value>
+  </data>
+  <data name="Loading" xml:space="preserve">
+    <value>Loading</value>
+  </data>
+  <data name="Welcome" xml:space="preserve">
+    <value>Welcome to Havhav.az :)</value>
+  </data>
+  <data name="Welcome.Text" xml:space="preserve">
+    <value>&lt;p&gt;Welcome to Havhav.az! Havhav.az is the first, only and largest social network in the Caucasus, designed for zoo lovers! :)
+Here you can &lt;a href="/Ad"&gt;share different posts&lt;/a&gt;, get information about &lt;a href="/Shelter"&gt;shelters&lt;/a&gt; and &lt;a href="/Vet"&gt;veterinary clinics&lt;/a&gt;, as well as follow the &lt;a href="/Post"&gt;latest news&lt;/a&gt; about the animal world!&lt;/p&gt;
+&lt;p&gt;In many cases, a certain amount of money is required to help animals. For this, &lt;a href="/Charity"&gt;the site has a special section&lt;/a&gt;. In order to provide maximum transparency, any amount sent will be available to the user in the form of a report (sender's name, amount, photo of receipt, etc.).&lt;/p&gt;
+&lt;p&gt;Also, you can ask or answer questions of any topic relating to animals in a separate section &lt;a href="/Forum"&gt;"Forum"&lt;/a&gt;.
+&lt;/p&gt;
+&lt;p&gt;Moreover, you can enter to &lt;a href="/Home/Chat"&gt;public chat of zoo-lovers&lt;/a&gt; and find new friends :)
+&lt;/p&gt;
+
+&lt;p&gt;
+	And so, together we are stronger!
+&lt;/p&gt;
+
+&lt;p&gt;
+    Click on &lt;i class="fas fa-bars header-icons clickable" style="color: orange"&gt;&lt;/i&gt; to open menu of site.
+&lt;/p&gt;
+
+P.S&lt;br&gt;
+Since I worked absolutely alone on the development of the site (design, coding, test, translations, etc.), it is likely that you will encounter some errors and bugs. Please, let me know about it ASAP. Send to hasan.shans@gmail.com a screenshot of the error and describe what exactly the problem is. Also, send me any information about shelters and vet-clinics that are not available in site! This will be your contribution to the improvement of Havhav.az! :)
+
+&lt;br&gt;&lt;br&gt;
+Thank you! Hav-hav &lt;i class="fas fa-paw" style="color: orange;"&gt;&lt;/i&gt; :)
+
+&lt;br&gt;&lt;br&gt;
+ &lt;b class="orange" style="float:right;"&gt;- Hasan Shans, 
+    &lt;a href="http://www.hasanshans.com" target="_blank" class="orange" style="text-decoration: underline;"&gt;
+         Founder of Havhav.az
+    &lt;/a&gt;
+&lt;/b&gt;</value>
+  </data>
+  <data name="Account.AddInfo" xml:space="preserve">
+    <value>Go to &lt;a href="/Account/Edit"&gt; "Redact"&lt;/a&gt; to add additional information about yourself. </value>
+  </data>
+  <data name="Contacts.Phone" xml:space="preserve">
+    <value>Phone number</value>
+  </data>
+  <data name="Menu.Chat" xml:space="preserve">
+    <value>Chat</value>
+  </data>
+  <data name="ShowPrevious" xml:space="preserve">
+    <value>Show previous</value>
+  </data>
+  <data name="Comment.ShowPrevious" xml:space="preserve">
+    <value>Show previous</value>
+  </data>
+  <data name="Chat.First" xml:space="preserve">
+    <value>Send first message :) </value>
+  </data>
+  <data name="Contacts.Address" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="OrderNumber" xml:space="preserve">
+    <value>Position</value>
+  </data>
+</root>

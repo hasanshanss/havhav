@@ -1,0 +1,42 @@
+﻿@using HavhavAz.Models
+@using HavhavAz.Models.PostModels
+@using HavhavAz.Models.ForumModels
+@model ForumViewModel
+
+@{
+    ViewBag.Title = SharedLocalizer["Titles.Forum"];
+    IList<PostViewModel> _pvmList = Model.Posts.ModelList;
+
+    Int32.TryParse(Context.Request.Query["fci"], out Int32 SelectedCategory);
+    Model.SelectedCategory = SelectedCategory;
+}
+
+@section UnderTitle{
+    <div class="col-md-12">
+        @*<h6 class="orange">@SharedLocalizer["Forum.SelectTopic"]</h6>*@
+        <select asp-for="SelectedCategory" asp-items="Model.ForumTypeSelectList"
+                name="forum-topic" class="fb-input-text" style="width:auto;"></select>
+    </div>
+
+    <div class="row w-100 mb-3 text-right">
+        <div class="col-md-12 text-right">
+            <a class="button clickable orange no-style" href="Forum/Create">@SharedLocalizer["Create"]</a>
+        </div>
+    </div>
+}
+
+@section Content{
+    @if (_pvmList != null && _pvmList.Count > 0)
+    {
+        @foreach (PostViewModel pvm in _pvmList)
+        {
+            @Html.DisplayFor(m => pvm);
+        }
+        <page-link page-model="Model.Posts.PageViewModel" url="/Post/Index@(Context.Request.QueryString.Value)"></page-link>
+    }
+    else
+    {
+        <vc:error-page error="@SharedLocalizer[$"NoResult"].Value"></vc:error-page>
+    }
+}
+

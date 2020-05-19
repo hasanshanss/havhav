@@ -1,0 +1,104 @@
+﻿@using HavhavAz.Models.NotificationModels
+@using HavhavAz.Models.UserModels
+@model IList<NotificationViewModel>
+
+
+@{
+    ViewBag.Title = SharedLocalizer["Titles.Notifications"];
+}
+
+@section Content{
+    <div id="notification-container">
+        @if (Model != null && Model.Any())
+        {
+            @foreach (NotificationViewModel nvm in Model)
+            {
+                Notification not = nvm.Not;
+
+                <div class="row justify-content-center m-auto">
+                    <div class="col-md-8 box mb-3">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h6><i class="@nvm.Icon orange"></i> @Html.Raw(nvm.NotText) </h6>
+                            </div>
+                            <div class="col-md-12 text-right">
+                                <span class="date" style="font-size:14px">
+                                    <i class="fa fa-calendar orange"></i>
+                                    @not.CreatedDate.ToString("dd.MM.yyyy")
+                                    <i class="far fa-clock orange"></i>
+                                    @not.CreatedDate.ToString("HH:mm")
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <vc:error-page error="@SharedLocalizer[$"NoResult"].Value"></vc:error-page>
+
+        }
+
+    </div>
+}
+
+@section addJs{
+    <script>
+        var new_notification_str = '<div class="col-md-8 box mb-3">' +
+            '                           <div class="row">' +
+            '                               <div class="col-md-12">' +
+            '                                   <h6>' +
+            '                                     <i class="not_icon " ></i>' +
+            '                                     <span class="not_text"></span>' +
+            '                                   </h6> ' +
+            '                               </div>' +
+            '       <div class="col-md-12 text-right">' +
+            '           <span class="date" style="font-size:14px">' +
+            '               <i class="fa fa-calendar orange"></i>' +
+            '                <span class="not-date"></span>' +
+            '              <i class="far fa-clock orange"></i>' +
+            '                <span class="not-time"></span>' +
+            '           </span>' +
+            '       </div>' +
+            '   </div>' +
+            '</div>';
+
+        var skip = 10;
+        var af_token = $('@Html.AntiForgeryToken()').val();
+
+        $(window).on("scroll", function () {
+
+            if ($(this).scrollTop() + $(this).height() === $(document).height()) {
+
+                AjaxCall("/Account/LoadNotificationsOnScroll", af_token, { skip: parseInt(skip) }, false, "", function (nvms) {
+                    nvms.forEach(function (nvm, index, arr) {
+                        generateNotification(nvm);
+                    });
+                    skip += 10;
+                });
+
+            }
+        });
+
+        function generateNotification(nvm)
+        {
+            var div = document.createElement("div");
+            div.classList += "row justify-content-center m-auto";
+            div.innerHTML = new_notification_str;
+
+            div.getElementsByClassName("not_text")[0].innerHTML = nvm.notText;
+            div.getElementsByClassName("not_icon")[0].classList += nvm.icon + " orange";
+
+            //set date to new message box
+            var not = nvm.not;
+            var date = new Date(Date.parse(not.createdDate));
+            div.getElementsByClassName("not-time")[0].innerHTML = date.getHours() + ":" + appendLeadingZeroes((date.getMinutes() + 1));
+            div.getElementsByClassName("not-date")[0].innerHTML = appendLeadingZeroes((date.getUTCDate() + 1)) + "." + appendLeadingZeroes(date.getMonth() + 1) + "." + date.getFullYear();
+
+            document.getElementById("notification-container").append(div);
+        }
+
+    </script>
+
+}

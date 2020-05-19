@@ -1,0 +1,37 @@
+﻿@using HavhavAz.Helpers.HtmlHelpers;
+@model string
+
+@{
+    string[] data = Model.Split('/');
+    string ModelName = data[0];
+    string ModelId = data[1];
+}
+
+<div class="row">
+    <div class="offset-lg-2 col-lg-8 col-md-12">
+        <div class="row">
+            <div class="col-md-6 text-center">
+                <p class="fb-title">@SharedLocalizer["MainPic"]:</p>
+                <div class="fb img-box-rounded">
+                    <img alt="Azərbaycanda heyvansevərlər üçün ilk və tək sosial şəbəkə" src="@Url.Content($"/images/{GetMainPic(ModelName, ModelId, ModelId)}")" id="main-pic" class="cb-img img-autoload" />
+                    <input type="file" class="img-autoload-input" name="FormImages.MainImage" id="main-pic-input" style="display: none;" />
+                </div>
+            </div>
+            <div class="col-md-6 text-center">
+                <p class="fb-title">@SharedLocalizer["Gallery"]:</p>
+
+                @Html.ListImages(Model, 2, true)
+                <div class="deleted-imgs">
+                </div>
+
+                <div class="gallery-inputs">
+                    <input name="FormImages.Gallery" type="file" id="gallery-1" style="display:none" ; />
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<vc:images action="CropImage" path=""></vc:images>*@

@@ -1,0 +1,638 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Account.BirthDate" xml:space="preserve">
+    <value>Дата рождения</value>
+  </data>
+  <data name="Account.MessageModal.Placeholder" xml:space="preserve">
+    <value>Привет! :)</value>
+  </data>
+  <data name="Account.MessageModal.Title" xml:space="preserve">
+    <value>Отправить сообщение</value>
+  </data>
+  <data name="Account.PostButtons.Ads" xml:space="preserve">
+    <value>Объявления</value>
+  </data>
+  <data name="Account.PostButtons.Charities" xml:space="preserve">
+    <value>Благотворительная кампания</value>
+  </data>
+  <data name="Account.PostButtons.News" xml:space="preserve">
+    <value>Новости</value>
+  </data>
+  <data name="Account.PostButtons.Title" xml:space="preserve">
+    <value>Публикации</value>
+  </data>
+  <data name="Account.SendMessage" xml:space="preserve">
+    <value>Отправить сообщение</value>
+  </data>
+  <data name="Ad.Age" xml:space="preserve">
+    <value>Возраст</value>
+  </data>
+  <data name="Ad.AgeMonth" xml:space="preserve">
+    <value>Месяц</value>
+  </data>
+  <data name="Ad.AgeYear" xml:space="preserve">
+    <value>Год</value>
+  </data>
+  <data name="Ad.Breed" xml:space="preserve">
+    <value>Порода</value>
+  </data>
+  <data name="Ad.Color" xml:space="preserve">
+    <value>Цвет</value>
+  </data>
+  <data name="Ad.Gender" xml:space="preserve">
+    <value>Пол</value>
+  </data>
+  <data name="AdditionalInfo" xml:space="preserve">
+    <value>Дополнительная информация</value>
+  </data>
+  <data name="Ads.Completed" xml:space="preserve">
+    <value>Спасённые</value>
+  </data>
+  <data name="Ads.Pending" xml:space="preserve">
+    <value>В ожидании спасения</value>
+  </data>
+  <data name="Charities.Completed" xml:space="preserve">
+    <value>Спасённые</value>
+  </data>
+  <data name="Charities.Pending" xml:space="preserve">
+    <value>В ожидании спасения</value>
+  </data>
+  <data name="Charity.BankCredentials" xml:space="preserve">
+    <value>Банковские реквизиты</value>
+  </data>
+  <data name="Charity.BankCredentials.Placeholder" xml:space="preserve">
+    <value>Банковские счёты</value>
+  </data>
+  <data name="Charity.Info.Placeholder" xml:space="preserve">
+    <value>Дополнтельная информация</value>
+  </data>
+  <data name="Charity.Name" xml:space="preserve">
+    <value>Кличка</value>
+  </data>
+  <data name="Charity.Name.Placeholder" xml:space="preserve">
+    <value>Кличка...</value>
+  </data>
+  <data name="Charity.RequiredAmount.Placeholder" xml:space="preserve">
+    <value>Необходимая сумма</value>
+  </data>
+  <data name="Chat.Coucou" xml:space="preserve">
+    <value>Поприветствовать! :)</value>
+  </data>
+  <data name="Chat.Hello" xml:space="preserve">
+    <value>Привет! :)</value>
+  </data>
+  <data name="Comment" xml:space="preserve">
+    <value>Комментировать</value>
+  </data>
+  <data name="Comment.First" xml:space="preserve">
+    <value>Прокомментируйте первым! :)</value>
+  </data>
+  <data name="Comment.Placeholder" xml:space="preserve">
+    <value>Комментировать...</value>
+  </data>
+  <data name="Comment.ShowMore" xml:space="preserve">
+    <value>Смотреть больше</value>
+  </data>
+  <data name="Comments.Reply" xml:space="preserve">
+    <value>Cavab ver</value>
+  </data>
+  <data name="Contacts" xml:space="preserve">
+    <value>Контакты</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>Добавить</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Редактировать</value>
+  </data>
+  <data name="Forum.SelectTopic" xml:space="preserve">
+    <value>Тема</value>
+  </data>
+  <data name="Gallery" xml:space="preserve">
+    <value>Галерея</value>
+  </data>
+  <data name="Gender" xml:space="preserve">
+    <value>Пол</value>
+  </data>
+  <data name="GeneralInfo" xml:space="preserve">
+    <value>Основная информация</value>
+  </data>
+  <data name="Header.MainText" xml:space="preserve">
+    <value>...они нас тоже любят :)</value>
+  </data>
+  <data name="Journal" xml:space="preserve">
+    <value>Журнал</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Язык</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Войти</value>
+  </data>
+  <data name="Login.Password" xml:space="preserve">
+    <value>Пароль</value>
+  </data>
+  <data name="Login.PasswordReset" xml:space="preserve">
+    <value>Забыли пароль?</value>
+  </data>
+  <data name="Login.Username" xml:space="preserve">
+    <value>Имя пользователя</value>
+  </data>
+  <data name="MainInfo" xml:space="preserve">
+    <value>Основная информация</value>
+  </data>
+  <data name="MainPic" xml:space="preserve">
+    <value>Главное фото</value>
+  </data>
+  <data name="Menu.Account" xml:space="preserve">
+    <value>Аккаунт</value>
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>Изменить пароль</value>
+  </data>
+  <data name="Menu.Account.Edit" xml:space="preserve">
+    <value>Редактировать</value>
+  </data>
+  <data name="Menu.Account.Index" xml:space="preserve">
+    <value>Личный кабинет</value>
+  </data>
+  <data name="Menu.Account.Logout" xml:space="preserve">
+    <value>Выйти</value>
+  </data>
+  <data name="Menu.Ad" xml:space="preserve">
+    <value>Объявления</value>
+  </data>
+  <data name="Menu.Ad.Charity" xml:space="preserve">
+    <value>Благотворительность</value>
+  </data>
+  <data name="Menu.Ad.LFO" xml:space="preserve">
+    <value>Отдается в добрые руки</value>
+  </data>
+  <data name="Menu.Ad.Mating" xml:space="preserve">
+    <value>Спариваются</value>
+  </data>
+  <data name="Menu.Ad.Wanted" xml:space="preserve">
+    <value>В розыске</value>
+  </data>
+  <data name="Menu.Forum" xml:space="preserve">
+    <value>Форум</value>
+  </data>
+  <data name="Menu.News" xml:space="preserve">
+    <value>Новости</value>
+  </data>
+  <data name="Menu.Shelter" xml:space="preserve">
+    <value>Приюты</value>
+  </data>
+  <data name="Menu.Vet" xml:space="preserve">
+    <value>Ветеринары</value>
+  </data>
+  <data name="Messages.Delete.Success" xml:space="preserve">
+    <value>Успешно удалено!</value>
+  </data>
+  <data name="Messages.Edit.Success" xml:space="preserve">
+    <value>Успешно обновлено!</value>
+  </data>
+  <data name="Messages.ErrorOccurred" xml:space="preserve">
+    <value>Произошла ошибка!</value>
+  </data>
+  <data name="Messages.Inbox" xml:space="preserve">
+    <value>Входящие</value>
+  </data>
+  <data name="Messages.Outbox" xml:space="preserve">
+    <value>Исходящие</value>
+  </data>
+  <data name="NotificationType.Comment" xml:space="preserve">
+    <value>прокомментировал вашу публикацию</value>
+  </data>
+  <data name="NotificationType.Message" xml:space="preserve">
+    <value>отправил вам сообщение</value>
+  </data>
+  <data name="NotificationType.Receipt" xml:space="preserve">
+    <value>- оказана денежная помощь</value>
+  </data>
+  <data name="NoTranslation" xml:space="preserve">
+    <value>Нет информации на выбранном языке.</value>
+  </data>
+  <data name="PasswordReset.MailMessage" xml:space="preserve">
+    <value>Уважаемый/ая {0}! Ваш запрос принят. Для назначения нового пароля &lt;a href="www.havhav.az/Account/ResetPassword?rpc={1}&amp;username={2}"&gt;нажмите сюда.&lt;/a&gt;Если вы не запросили восстановления пароля, то просто игнорируйте данное сообщение.&lt;br&gt;&lt;br&gt;&lt;b&gt;Ссылка активна только в течение 24 часов!&lt;/b&gt;</value>
+  </data>
+  <data name="PasswordReset.PleaseEnterUsername" xml:space="preserve">
+    <value>Пожалуйста, введите имя пользовтеля.</value>
+  </data>
+  <data name="PasswordReset.ResetButton" xml:space="preserve">
+    <value>Восстановить</value>
+  </data>
+  <data name="Post.Comment" xml:space="preserve">
+    <value>Прокомментировать</value>
+  </data>
+  <data name="Post.Content" xml:space="preserve">
+    <value>Текст публикации...</value>
+  </data>
+  <data name="Post.Title" xml:space="preserve">
+    <value>Заголовок</value>
+  </data>
+  <data name="ReadMore" xml:space="preserve">
+    <value>Подробнее</value>
+  </data>
+  <data name="Receipt.AddBtn" xml:space="preserve">
+    <value>Отправить чек</value>
+  </data>
+  <data name="Receipt.Amount" xml:space="preserve">
+    <value>Отправленная сумма</value>
+  </data>
+  <data name="Receipt.Date" xml:space="preserve">
+    <value>Дата</value>
+  </data>
+  <data name="Receipt.Form.Amount.Label" xml:space="preserve">
+    <value>Отправленная сумма</value>
+  </data>
+  <data name="Receipt.Form.Name.Label" xml:space="preserve">
+    <value>Имя</value>
+  </data>
+  <data name="Receipt.Form.Name.Placeholder" xml:space="preserve">
+    <value>Анонимно</value>
+  </data>
+  <data name="Receipt.Form.Photo.Label" xml:space="preserve">
+    <value>Фото чека</value>
+  </data>
+  <data name="Receipt.Image" xml:space="preserve">
+    <value>Фото чека</value>
+  </data>
+  <data name="Receipt.ListBtn" xml:space="preserve">
+    <value>Список помогающих</value>
+  </data>
+  <data name="Receipt.ListTitle" xml:space="preserve">
+    <value>Список помогающих</value>
+  </data>
+  <data name="Receipt.Sender" xml:space="preserve">
+    <value>Имя отправитея</value>
+  </data>
+  <data name="Receipt.Status" xml:space="preserve">
+    <value>Статус</value>
+  </data>
+  <data name="Register.About" xml:space="preserve">
+    <value>Информация о себе</value>
+  </data>
+  <data name="Register.Birthdate" xml:space="preserve">
+    <value>Дата рождения</value>
+  </data>
+  <data name="Register.Gender" xml:space="preserve">
+    <value>Пол</value>
+  </data>
+  <data name="Register.Name" xml:space="preserve">
+    <value>Имя</value>
+  </data>
+  <data name="Register.Password" xml:space="preserve">
+    <value>Пароль</value>
+  </data>
+  <data name="Register.PasswordConfirmation" xml:space="preserve">
+    <value>Введите заново пароль</value>
+  </data>
+  <data name="Register.Submit" xml:space="preserve">
+    <value>Регистрация</value>
+  </data>
+  <data name="Register.Username" xml:space="preserve">
+    <value>Имя пользователя</value>
+  </data>
+  <data name="Registration" xml:space="preserve">
+    <value>Регистрация</value>
+  </data>
+  <data name="RememberMe" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  <data name="Reset" xml:space="preserve">
+    <value>Восстановить</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Искать</value>
+  </data>
+  <data name="Search.News" xml:space="preserve">
+    <value>Поиск по публикациям</value>
+  </data>
+  <data name="Search.User" xml:space="preserve">
+    <value>Поиск по пользователям</value>
+  </data>
+  <data name="Send" xml:space="preserve">
+    <value>Отправить</value>
+  </data>
+  <data name="ShowMore" xml:space="preserve">
+    <value>Показать все</value>
+  </data>
+  <data name="Titles.Account" xml:space="preserve">
+    <value>Аккаунт</value>
+  </data>
+  <data name="Titles.Ad" xml:space="preserve">
+    <value>Объявления</value>
+  </data>
+  <data name="Titles.Charity" xml:space="preserve">
+    <value>Благотворительность</value>
+  </data>
+  <data name="Titles.Chat" xml:space="preserve">
+    <value>Чат</value>
+  </data>
+  <data name="Titles.ForgetPassword" xml:space="preserve">
+    <value>Восстановление пароля</value>
+  </data>
+  <data name="Titles.Forum" xml:space="preserve">
+    <value>Форум</value>
+  </data>
+  <data name="Titles.Home" xml:space="preserve">
+    <value>Главная страница</value>
+  </data>
+  <data name="Titles.Login" xml:space="preserve">
+    <value>Войти</value>
+  </data>
+  <data name="Titles.Messages" xml:space="preserve">
+    <value>Сообщения</value>
+  </data>
+  <data name="Titles.News" xml:space="preserve">
+    <value>Новости</value>
+  </data>
+  <data name="Titles.Notification" xml:space="preserve">
+    <value>Уведомления</value>
+  </data>
+  <data name="Titles.Notifications" xml:space="preserve">
+    <value>Уведомления</value>
+  </data>
+  <data name="Titles.Post" xml:space="preserve">
+    <value>Публикации</value>
+  </data>
+  <data name="Titles.Register" xml:space="preserve">
+    <value>Регистрация</value>
+  </data>
+  <data name="Titles.SearchResults" xml:space="preserve">
+    <value>Результат поиска</value>
+  </data>
+  <data name="Titles.Shelter" xml:space="preserve">
+    <value>Приюты</value>
+  </data>
+  <data name="Titles.User" xml:space="preserve">
+    <value>Пользователи</value>
+  </data>
+  <data name="Titles.Vet" xml:space="preserve">
+    <value>Ветеринары</value>
+  </data>
+  <data name="Translate" xml:space="preserve">
+    <value>Перевод</value>
+  </data>
+  <data name="About" xml:space="preserve">
+    <value>Про себя</value>
+  </data>
+  <data name="Info" xml:space="preserve">
+    <value>Информация</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Ошибка</value>
+  </data>
+  <data name="Errors.404" xml:space="preserve">
+    <value>Страница не найдена</value>
+  </data>
+  <data name="Errors.500" xml:space="preserve">
+    <value>Прозошла ошибка на сервере! Пожалуйста, свяжитесь со службой  поддержки - support@havhav.az :(</value>
+  </data>
+  <data name="Errors.502" xml:space="preserve">
+    <value>Произошла ошибка на сервере</value>
+  </data>
+  <data name="NoResult" xml:space="preserve">
+    <value>Результатов не найдено</value>
+  </data>
+  <data name="Register.DOB_Hide" xml:space="preserve">
+    <value>Скрыть</value>
+  </data>
+  <data name="FoundedDate" xml:space="preserve">
+    <value>Дата основания</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Название</value>
+  </data>
+  <data name="ChangeEmail" xml:space="preserve">
+    <value>Сменить email</value>
+  </data>
+  <data name="Menu.Account.Security" xml:space="preserve">
+    <value>Безопасность</value>
+  </data>
+  <data name="Security" xml:space="preserve">
+    <value>Безопасность</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Пароль</value>
+  </data>
+  <data name="NotSpecified" xml:space="preserve">
+    <value>Информация не указана</value>
+  </data>
+  <data name="Security.EmailChanged" xml:space="preserve">
+    <value>Ваш email был успешно изменен! Сообщите нам, если вы не делали этого!</value>
+  </data>
+  <data name="Security.PasswordChanged" xml:space="preserve">
+    <value>Ваш пароль был успешно изменен! Сообщите нам, если вы не делали этого!</value>
+  </data>
+  <data name="Register.NewPassword" xml:space="preserve">
+    <value>Новый пароль</value>
+  </data>
+  <data name="Titles.PasswordReset" xml:space="preserve">
+    <value>Восстановление пароля</value>
+  </data>
+  <data name="SelectLanguage" xml:space="preserve">
+    <value>Выберите язык</value>
+  </data>
+  <data name="NotificationType.Comment.InvolvedUsers" xml:space="preserve">
+    <value>şərh etdiyiniz postu şərh edib</value>
+  </data>
+  <data name="NotificationType.Like" xml:space="preserve">
+    <value>sizin postu bəyənib</value>
+  </data>
+  <data name="Account.NoInfo" xml:space="preserve">
+    <value>Пользователь отказался предоставить информацию про себя...)</value>
+  </data>
+  <data name="Account.RegisteredDate" xml:space="preserve">
+    <value>Дата присоединения к Havhav</value>
+  </data>
+  <data name="ChangeState" xml:space="preserve">
+    <value>Изменить статус</value>
+  </data>
+  <data name="Loading" xml:space="preserve">
+    <value>Загружается</value>
+  </data>
+  <data name="Welcome" xml:space="preserve">
+    <value>Добро пожаловать в Havhav.az :)</value>
+  </data>
+  <data name="Welcome.Text" xml:space="preserve">
+    <value>&lt;p&gt;
+	Добро пожаловать в Havhav.az! Havhav.az является первой, единственной и самой большой социальной сетью в Кавказе, предназначенная для зоо-любителей! :)
+	Здесь вы можете &lt;a href="/Ad"&gt;поделиться разными объявлениями&lt;/a&gt;, получить информацию о &lt;a href="/Shelter"&gt;приютах&lt;/a&gt; и &lt;a href="/Vet"&gt;ветеринарных клиник&lt;/a&gt;, а также &lt;a href="/Post"&gt;следить за свежими новостями&lt;/a&gt; про животный мир!
+&lt;/p&gt;
+&lt;p&gt;Во многих случаях, для помощи животным требуется определенное количество средств. Для этого в сайте есть &lt;a href="/Charity"&gt;специальный раздел&lt;/a&gt;. Дла предоставления максимальной прозрачности, любая отправленная сумма будет доступна пользователю в виде отчета (имя отправителя, сумма, фото чека и т.д).&lt;/p&gt;
+&lt;p&gt;
+	Также, вы можете спросить или ответить на вопросы любой темы, касающаяся животным в отдельном разделе &lt;a href="/Forum"&gt;"Форум"&lt;/a&gt;.
+	Кроме прочего, вы можете зайти в &lt;a href="/Home/Chat"&gt;публичный чат зоо-любителей&lt;/a&gt; и найти себе новых друзей :)
+&lt;/p&gt;
+
+&lt;p&gt;
+И так, вместе мы сильнее! :)
+&lt;/p&gt;
+
+&lt;p&gt;
+    Кликайте на &lt;i class="fas fa-bars header-icons clickable" style="color: orange"&gt;&lt;/i&gt; для входа в меню сайта.
+&lt;/p&gt;
+
+P.S&lt;br&gt;
+Поскольку над разработкой сайта работал я исключительно один (дизайн, кодинг, тест, переводы и т.д), то вполне вероятно, что вы столкнетесь с какими-то ошибками и багами. Очень прошу вас, сообщите мне об этом как только сможете. Отправьте скрин экрана с ошибком и опишите, в чем именно проблема на адрес hasan.shans@gmail.com. Также, если вы заметили отсутствие информации о тех или иных приютов и вет-клиник - дайте мне знать, чтобы я смог добавить их в сайт! Этим вы внесете свою лепту в совершенствование Havhav.az! :)
+
+&lt;br&gt;&lt;br&gt;
+Благодарю! Hav-hav &lt;i class="fas fa-paw" style="color: orange;"&gt;&lt;/i&gt; :)
+
+&lt;br&gt;&lt;br&gt;
+ &lt;b class="orange" style="float:right;"&gt;- Хасан Шанс, 
+    &lt;a href="http://www.hasanshans.com" target="_blank" class="orange" style="text-decoration: underline;"&gt;
+         Основатель Havhav.az
+    &lt;/a&gt;
+&lt;/b&gt;</value>
+  </data>
+  <data name="Account.AddInfo" xml:space="preserve">
+    <value>Для предоставления подробной информации про себя, пожалуйста зайдите в раздел &lt;a href="/Account/Edit"&gt; "Редактировать"&lt;/a&gt;.</value>
+  </data>
+  <data name="Contacts.Phone" xml:space="preserve">
+    <value>Номер телефона</value>
+  </data>
+  <data name="Menu.Chat" xml:space="preserve">
+    <value>Чат</value>
+  </data>
+  <data name="ShowPrevious" xml:space="preserve">
+    <value>Показать предыдущие</value>
+  </data>
+  <data name="Comment.ShowPrevious" xml:space="preserve">
+    <value>Показать предыдущие</value>
+  </data>
+  <data name="Chat.First" xml:space="preserve">
+    <value>Отправьте первое сообщение! :)</value>
+  </data>
+  <data name="Contacts.Address" xml:space="preserve">
+    <value>Адрес</value>
+  </data>
+  <data name="OrderNumber" xml:space="preserve">
+    <value>Порядковый номер</value>
+  </data>
+</root>

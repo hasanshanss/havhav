@@ -1,0 +1,29 @@
+﻿
+<div class="row">
+    <div class="offset-md-1 offset-lg-2 col-lg-8 col-md-12">
+        <div class="row">
+            <div class="col-md-6 text-center">
+                <p class="fb-title">@SharedLocalizer["MainPic"]:</p>
+                <div class="fb img-box-rounded">
+                    <img alt="Azərbaycanda heyvansevərlər üçün ilk və tək sosial şəbəkə" src=@Url.Content("~/images/beqemot.png") id="main-pic" class="fb-img img-autoload" />
+                    <input type="file" class="img-autoload-input" name="FormImages.MainImage" id="main-pic-input" style="display: none;" />
+                </div>
+            </div>
+            <div class="col-md-6 text-center">
+                <p class="fb-title">@SharedLocalizer["Gallery"]:</p>
+                <div class="row">
+                    <div class="col-md-3 gallery-img" id="gallery-img-1">
+                        <div class="img-frame clickable">
+                            <i class="fas fa-plus orange" style="margin-top:30px;"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-inputs">
+                    <input type="file" name="FormImages.Gallery" id="gallery-1" style="display: none;" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<vc:images action="CropImage" path=""></vc:images>*@

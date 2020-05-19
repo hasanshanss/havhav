@@ -1,0 +1,23 @@
+﻿@using HavhavAz.Models.UserModels
+@using HavhavAz.Models.ContactsModels
+@model User
+
+@{
+    string id = ViewContext.RouteData.Values["id"]?.ToString();
+    ViewBag.Title = SharedLocalizer[String.IsNullOrEmpty(id) ? "Menu.Account.Index" : "Titles.User"].Value;
+}
+
+@section Content
+    {
+    @Html.DisplayForModel();
+}
+
+@section addJs{
+    <script src="~/js/user.js"></script>
+    <script>
+        isAuthenticated = "@User.Identity.IsAuthenticated.ToString().ToLower()" === 'true';
+        countLines();
+    </script>
+}
+
+

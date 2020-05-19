@@ -1,0 +1,13 @@
+.santos-table-container th {
+    color: orange;
+}
+.hide{
+    display: none;
+}
+
+.santos-table {
+    width: 100%;
+    overflow-x: auto;
+    display: inline-block;
+    white-space: nowrap;
+}

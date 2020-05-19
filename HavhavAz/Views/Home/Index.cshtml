@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = SharedLocalizer["Welcome"];
+}
+
+@section addCss{ 
+    <style>
+        .welcome-text-box a {
+            font-weight: 1000;
+            color: orange !important;
+        }
+    </style>
+}
+
+@section Content{
+    
+
+    <div class="row m-auto">
+        <div class="col-md-12 box" style="padding:0px;">
+            <div class="row m-auto">
+                <div class="col-md-6 d-flex justify-content-center align-items-center">
+                    <span  class="welcome-text-box" style="font-style: italic; padding: 10px; font-size:16px;" >
+                       @SharedLocalizer["Welcome.Text"]
+                    </span>
+                </div>
+                <div class="col-md-6" style="padding: 0px">
+                    <img alt="Azərbaycanda heyvansevərlər üçün ilk və tək sosial şəbəkə" class="img-responsive img-fluid" src="~/images/error.gif" style="float:right;" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+}

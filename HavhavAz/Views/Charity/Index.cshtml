@@ -1,0 +1,306 @@
+﻿@using HavhavAz.Models
+@using HavhavAz.Models.CharityModels
+@using static HavhavAz.Models.UserModels.User
+@model IndexViewModel<CharityViewModel>
+
+@{
+    ViewBag.Title = SharedLocalizer["Titles.Charity"];
+
+    //check for admin
+    bool isAdmin = Context.GetCurrentUserRole() == Roles.Admin;
+
+    //if "state" query string is not defined, then assign state as 1 (approved)
+    string state_query_string = Context.Request.Query["state"].ToString();
+    Byte.TryParse(state_query_string, out byte state);
+    state = String.IsNullOrWhiteSpace(state_query_string) ? (byte)1 : state;
+
+    //set state in SelectList
+    Model.SelectedState = state;
+}
+
+@section UnderTitle{
+    <div class="col-md-12 text-center m-3">
+        <div class="row justify-content-center">
+            @if (!isAdmin)
+            {
+                <div class="col-md-4 mb-4 text-md-right pr-md-0 ml-md-5">
+                    <a href="/Charity" class="no-style button @(state == 0 ? "orange" : "white") clickable m-1">
+                        @SharedLocalizer["Charities.Pending"]
+                    </a>
+                </div>
+                <div class="col-md-4 text-md-left pl-md-0">
+                    <a href="/Charity?state=0" class="no-style button @(state == 0 ? "white" : "orange") clickable m-1">
+                        @SharedLocalizer["Charities.Completed"]
+                    </a>
+                </div>
+            }
+            else
+            {
+
+                <div class="col-md-12 text-left">
+                    @if (state == 2)
+                    {
+
+                        <button class="button bg-success clickable" id="approve-all" data-model-name="Charity">
+                            @SharedLocalizer["ApproveAll"]
+                        </button>
+                    }
+                    else if (state == 5)
+                    {
+
+                        <button class="button bg-danger clickable" id="delete-all" data-model-name="Charity">
+                            @SharedLocalizer["DeleteAll"]
+                        </button>
+                    }
+                    <select asp-for="SelectedState" asp-items="_stateSelectList"
+                            name="state" class="fb-input-text" style="width:auto;"></select>
+                </div>
+            }
+
+        </div>
+
+        @if (User.Identity.IsAuthenticated)
+        {
+            <div class="row mt-4">
+                <div class="col-md-12 text-right">
+                    <a class="button clickable orange no-style mt-4" href="/Charity/Create">@SharedLocalizer["Create"]</a>
+                </div>
+            </div>
+        }
+    </div>
+}
+
+@section Content{
+    @if (Model.ModelList != null && Model.ModelList.Count > 0)
+    {
+        @foreach (CharityViewModel cvm in Model.ModelList)
+        {
+            Charity charity = cvm.Charity;
+
+            var collectedPercent = charity.CollectedAmount * 100 / charity.Amount;
+            var id = charity.ID.ToString();
+            bool isMine = isAdmin || cvm.Charity.UserId == Context.GetCurrentUserId();
+
+            @Html.AntiForgeryToken()
+
+            <input type="hidden" value="@isMine.ToString()" id="isMine-@charity.ID" />
+            <div class="row m-auto">
+                <div class="col-md-12 box" id="charity-@charity.ID">
+                    <div class="row">
+                        <div class="col-md-4 text-center">
+                            <div class="cb-img-box">
+                                <img alt="Azərbaycanda heyvansevərlər üçün ilk və tək sosial şəbəkə" src=@Url.Content($"~/images/{GetMainPic("charities", id, id)}") class="cb-img">
+                            </div>
+                            <div class="row">
+                                <div class="col-12 col-md-12">
+                                    <div style="float:left;">
+                                        <a href="Account/Index/@cvm.Publisher" class="orange">
+                                            <span style="font-size:14px">
+                                                <i class="fa fa-pencil "></i>
+                                                @cvm.Publisher
+                                            </span>
+                                        </a>
+                                    </div>
+                                    <div style="float:right;">
+                                        <span class="date" style="font-size:14px">
+                                            <i class="fa fa-calendar orange"></i>
+                                            @charity.CreatedDate.ToString("dd.MM.yyyy")
+                                        </span>
+                                        <span class="date" style="font-size:14px">
+                                            <i class="far fa-clock orange"></i>
+                                            @charity.CreatedDate.ToString("HH:mm")
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8 mt-4">
+                            <h2 class="cb-title wrappable w-50">
+                                @charity.Name
+
+                            </h2>
+                            <div class="cb-content">
+                                <nav class="nav nav-tabs" id="nav-tab" role="tablist" style="flex-direction: row-reverse;">
+                                    <a class="nav-item nav-link" id="nav-gallery-tab" data-toggle="tab" href="#nav-gallery-@charity.ID" role="tab" aria-controls="gallery" aria-expanded="false">
+                                        <i class="far fa-images cb-icons"></i>
+                                    </a>
+                                    <a class="nav-item nav-link" id="nav-credentials-tab" data-toggle="tab" href="#nav-credentials-@charity.ID" role="tab" aria-controls="credentials" aria-expanded="false">
+                                        <i class="fas fa-hand-holding-usd cb-icons"></i>
+                                    </a>
+                                    <a class="nav-item nav-link active" id="nav-info-tab" data-toggle="tab" href="#nav-info-@charity.ID" role="tab" aria-controls="info" aria-expanded="true">
+                                        <i class="fas fa-info-circle cb-icons"></i>
+                                    </a>
+                                </nav>
+                                <div class="tab-content" id="nav-tabContent">
+                                    <div class="tab-pane fade active show" id="nav-info-@charity.ID" role="tabpanel" aria-labelledby="nav-info-tab" aria-expanded="true">
+                                        <p class="p-2 cb-content with-break with-dots">@charity.Info</p>
+                                    </div>
+                                    <div class="tab-pane fade" id="nav-credentials-@charity.ID" role="tabpanel" aria-labelledby="nav-credentials-tab" aria-expanded="false">
+                                        <div class="cb-info-text-box">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="button clickable receipt-modal" data-action="add" data-charity-id="@charity.ID">@SharedLocalizer["Receipt.AddBtn"]</div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="button clickable receipt-modal" data-action="list" data-charity-id="@charity.ID">@SharedLocalizer["Receipt.ListBtn"]</div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    @{
+                                                        string bank_credentials = charity.BankCredentials ?? $"{SharedLocalizer[$"NotSpecified"].Value}";
+                                                    }
+                                                    <p class="with-break">@bank_credentials</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="nav-gallery-@charity.ID" role="tabpanel" aria-labelledby="nav-gallery-tab">
+                                        <div class="row justify-content-center align-items-center" style="height:250px;" id="gallery-loader-@charity.ID">
+                                            <div class="col-md-12 text-center">
+                                                <img src="~/images/loader.gif" style="width:70px; height:50px" />
+                                                <span class="orange">@SharedLocalizer["Loading"]...</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="cb-footer">
+                                <div class="row">
+                                    <div class="col-md-12 text-center">
+                                        <div class="charity-progress-box">
+                                            <div class="charity-amount-box text-center">
+                                                <span class="charity-collected-amount">@charity.CollectedAmount</span>
+                                                /
+                                                <span class="charity-amount">@charity.Amount</span>
+                                            </div>
+                                            <span data-percent="@collectedPercent" class="charity-progress-bar"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row fb-title text-right">
+                                    <div class="col-md-12">
+                                        @if (isAdmin)
+                                        {
+                                            <a class="orange admin-button no-style" style="color:#f49e42" href="/Charity/Edit/@id">
+                                                <i class="far fa-edit"></i>
+                                            </a>
+                                        }
+                                        @if (isMine || isAdmin)
+                                        {
+
+                                            <a class="orange admin-button no-style change-state" style="padding-right:0px; color:#f49e42"
+                                               href="javascript:void(0);" data-action="Deleted" data-model-name="Charity" data-admin="@isAdmin" data-model-id="@id">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </a>
+                                        }
+                                        <a href="/Post?ptn=Charity&si=@id" style="color:#f49e42" class="admin-button no-style">
+                                            <i class="fas fa-book-open"></i>
+                                            (@cvm.PostCount)
+                                        </a>
+                                    </div>
+                                    <div class="col-md-12">
+                                        @if (isAdmin)
+                                        {
+
+                                            <select asp-for="SelectedState" asp-items="_stateSelectList"
+                                                    name="private-state" data-model-id="@id" data-model-name="Charity" class="fb-input-text" style="width:auto;"></select>
+
+
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        }
+
+        <div class="container modal modal-sm" id="receipt-add-modal">
+            <form method="post" asp-antiforgery="true" id="receipt-form" data-parsley-validate>
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <label for="ReceiptImage">@SharedLocalizer["Receipt.Form.Photo.Label"]</label>
+                        <div class="fb img-box-rounded">
+                            <img alt="Azərbaycanda heyvansevərlər üçün ilk və tək sosial şəbəkə" src=@Url.Content("~/images/beqemot.png") id="main-pic" class="fb-img img-autoload" />
+                            <input type="file" class="img-autoload-input" name="Image" id="main-pic-input" style="display: none;" />
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <label for="name">@SharedLocalizer["Receipt.Form.Name.Label"]</label>
+                        <input type="text" name="Name" class="fb-input-text" placeholder="@SharedLocalizer["Receipt.Form.Name.Placeholder"]"
+                               data-parsley-maxlength-message="@ValidationLocalizer["Invalid"]" maxlength="20" />
+                    </div>
+                    <div class="col-md-12">
+                        <label for="name">@SharedLocalizer["Receipt.Form.Amount.Label"]</label>
+                        <input type="number" name="Amount" class="fb-input-text" placeholder="0"
+                               required data-parsley-required-message="@ValidationLocalizer["Required"]" />
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 text-right">
+                        <input type="submit" class="button orange clickable" value="@SharedLocalizer["Send"]">
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="container modal" id="receipt-list-modal">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel">
+                        <div class="panel-body container-fluid">
+                            <div class="row row-lg">
+                                <div class="col-lg-12">
+                                    <div class="example-wrap">
+                                        <h4 class="example-title">@SharedLocalizer["Receipt.ListTitle"]</h4>
+                                        <div id="receipt-state-box" style="display:none; float:right;">
+                                            <h6>@SharedLocalizer["ChangeState"]</h6>
+                                            <select asp-items="GenerateStateSelectList(isAdmin);" name="receipt-state" class="fb-input-text" style="width:auto;"></select>
+                                        </div>
+                                        <div class="example table-responsive">
+                                            <table class="table" id="receipt-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>@SharedLocalizer["Receipt.Sender"]</th>
+                                                        <th>@SharedLocalizer["Receipt.Amount"]</th>
+                                                        <th>@SharedLocalizer["Receipt.Date"]</th>
+                                                        <th>@SharedLocalizer["Receipt.Image"]</th>
+                                                        <th>@SharedLocalizer["Receipt.Status"]</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody></tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <page-link page-model="Model.PageViewModel" url="/Charity/Index@(Context.Request.QueryString.Value)"></page-link>
+    }
+    else
+    {
+        <vc:error-page error="@SharedLocalizer[$"NoResult"].Value"></vc:error-page>
+    }
+
+
+}
+@section addJs{
+    <script src="~/js/charity.js"></script>
+    <script src="~/js/ajaxGallery.js"></script>
+    <script>
+        ajax_gallery_path = "charities";
+        charity_id = "@ViewContext.RouteData.Values["id"]";
+        isAdmin = "@isAdmin.ToString().ToLower()" === 'true';
+    </script>
+}
+

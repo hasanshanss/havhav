@@ -1,0 +1,108 @@
+﻿@using HavhavAz.Models.CommentModels
+@using static HavhavAz.Models.UserModels.User;
+@model CommentViewModel
+
+@{
+    string Username = Context.GetCurrentUsername();
+    Int32 UserId = Context.GetCurrentUserId();
+
+    Roles role = Context.GetCurrentUserRole();
+    bool isAdmin = role == Roles.Admin;
+}
+
+@*Comment Section*@
+<div class="container mt-2 m-auto">
+    <div class="row">
+        <div class="col-md-12 box comment_block">
+            <div class="new_comment">
+                @if (Model != null && Model.HasNext)
+                {
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <button class="button clickable" id="showMore" onclick="showMore()">@SharedLocalizer["Comment.ShowPrevious"]</button>
+                        </div>
+                    </div>
+                }
+                <ul class="user_comment">
+                    @if (Model.CommentPublisherList != null && Model.CommentPublisherList.Count > 0)
+                    {
+                        @foreach (CommentPublisher cp in Model.CommentPublisherList)
+                        {
+
+                            string Publisher = cp.Publisher;
+                            Comment comment = cp.Comment;
+
+                            <li>
+                                <div class="row">
+                                    <div class="col-3 col-sm-2 col-md-2 col-lg-1 mt-4">
+                                        <div class="user_avatar">
+                                            <img alt="Azərbaycanda heyvansevərlər üçün ilk və tək sosial şəbəkə" src="@Url.Content($"/images/{GetMainPic("users", Publisher)}")" width="50" height="50">
+                                        </div>
+
+                                    </div>
+                                    <div class="col-9 col-sm-10 col-md-11">
+                                        <div class="comment_body" id="comment-@comment.ID">
+                                            @if (UserId == comment.UserId || isAdmin)
+                                            {
+                                                <span class="comment-delete orange clickable" style="float:right">x</span>
+                                            }
+                                            <div>
+                                                <a href="/Account/Index/@Publisher" class="orange">
+                                                    <span style="font-size:13px; word-break:break-all;">@Publisher</span>
+                                                </a>
+                                            </div>
+                                            <p class="wrappable">
+                                                @comment.Content
+                                            </p>
+
+                                            <div class="row comment_toolbar">
+                                                <div class="col-12 col-md-12">
+                                                    <div class="comment_tools text-right">
+                                                        <ul>
+                                                            <li>
+                                                                <i class="fa fa-clock-o icon"></i> @comment.Date.ToString("HH:mm")
+                                                            </li>
+                                                            <li>
+                                                                <i class="fa fa-calendar icon mr-1"></i>@comment.Date.ToString("dd.MM.yyyy")
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </li>
+                        }
+
+
+                    }
+                    else
+                    {
+                        <li id="firstCommentText">
+                            <h5 class="fb-title text-center">@SharedLocalizer["Comment.First"]</h5>
+                        </li>
+                    }
+                </ul>
+
+                <hr style="background-color: orange;" />
+                <div class="create_new_comment">
+                    <div class="row">
+                        <div class="col-3 col-sm-2 col-md-2 col-lg-1 avatar_box">
+                            <img alt="Azərbaycanda heyvansevərlər üçün ilk və tək sosial şəbəkə" class="img-fluid avatar" src="@Url.Content($"/images/{GetMainPic("users", Username)}")">
+                        </div>
+                        <div class="col-8 col-sm-9 col-md-9 col-lg-10">
+                            <div class="input_comment">
+                                <input class="fb-input messagebox" id="send_input" type="text" placeholder="@SharedLocalizer["Comment.Placeholder"].."
+                                       required data-parsley-required-message="@ValidationLocalizer["Required"]"
+                                       data-parsley-maxlength="2500" data-parsley-maxlength-message="@ValidationLocalizer["StringLength", "", 2500]">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

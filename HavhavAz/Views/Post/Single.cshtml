@@ -1,0 +1,109 @@
+﻿@using HavhavAz.Models.PostModels
+@using HavhavAz.Models.CommentModels
+@using static HavhavAz.Models.UserModels.User
+@model PostViewModel
+
+@{
+    Post post = Model.Post;
+    PostTranslations pt = post.PostTranslations.First();
+
+    string id = post.ID.ToString();
+    bool isMine = Context.GetCurrentUserId() == post.UserId;
+    bool isAdmin = Context.GetCurrentUserRole() == Roles.Admin;
+
+    string title = post.PostType.ToString().Equals("Forum") ? "Forum" : "News";
+    ViewBag.Title = SharedLocalizer[$"Titles.{title}"];
+}
+
+@section Content{
+
+    <div class="row m-auto">
+        <div class="col-md-12 box">
+            <div class="row m-auto">
+                <div class="col-md-4 text-center">
+
+                    <div class="cb-img-box">
+                        <img alt="@pt.Title" src=@Url.Content($"~/images/{GetMainPic("posts", id, id)}") class="cb-img" style="margin-bottom:5px;">
+                    </div>
+
+                    @Html.ListImages($"/posts/{post.ID}/", 2)
+                </div>
+                <div class="col-md-8">
+                    <div class="nb-content">
+                        <h2 class="wrappable">@pt.Title</h2>
+                        <p class="with-break">@pt.Content</p>
+                    </div>
+                    <div class="row comment_toolbar">
+                        <div class="col-12 col-md-12">
+                            <div class="comment_tools text-left mr-5">
+                                <ul>
+                                    <li>
+                                        <i class="far fa-clock orange icon"></i> @post.CreatedDate.ToString("HH:mm")
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-calendar icon mr-1"></i>@post.CreatedDate.ToString("dd.MM.yyyy")
+                                    </li>
+                                    <li>
+                                        <span class="orange">|</span>
+                                    </li>
+                                    <li>
+                                        <i class="fas fa-eye orange"></i> @post.Views
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="cb-footer">
+                <div class="row fb-title text-right">
+                    <div class="col-md-12">
+                        @if (isAdmin)
+                        {
+                            <a class="orange admin-button" style="color:#f49e42" href="/Post/Edit/@post.ID">
+                                <i class="far fa-edit"></i>
+                            </a>
+                        }
+                        @if (isMine || isAdmin)
+                        {
+                            <a class="orange admin-button no-style change-state" style="padding-right:0px; color:#f49e42"
+                               href="javascript:void(0);" data-action="Deleted" data-model-name="Post" data-admin="@isAdmin" data-model-id="@post.ID">
+                                <i class="fas fa-trash-alt"></i>
+                            </a>
+                            @if (Model.IsUntranslated)
+                            {
+                                <a class="orange admin-button no-style" href="/Post/Translate?pi=@post.ID" style="padding-right:0px; color:#f49e42">
+                                    <i class="fas fa-language"></i>
+                                </a>
+                            }
+                        }
+                        <div class="col-md-12">
+                            @if (isAdmin)
+                            {
+                                <select asp-for="@post.State" asp-items="_stateSelectList" name="private-state" data-model-id="@post.ID" data-model-name="Post"
+                                        class="fb-input-text" style="width:auto;"></select>
+                            }
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    @Html.AntiForgeryToken()
+    <vc:comments model="@Model.CommentViewModel"></vc:comments>
+}
+
+@section addJs{
+    <script src="/js/comments.js"></script>
+    <script>
+        post_id = "@post.ID";
+        post_title = "@pt.Title";
+        isRedirect = true;
+    </script>
+}
+

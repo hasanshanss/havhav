@@ -1,0 +1,175 @@
+﻿@using HavhavAz.Models.UserModels
+@using HavhavAz.Models.ContactsModels
+@model User
+
+@{
+    User user = Model;
+    Contacts contacts = user.Contacts;
+
+    string Username = user.Username;
+    bool myAccount = Username.Equals(Context.GetCurrentUsername());
+}
+
+<div class="row m-auto">
+    <div class="col-md-12 box" id="user-@user.ID">
+        <div class="row m-auto">
+
+            <div class="col-md-4 text-center mb-5">
+                <div class="fb img-box-rounded non-clickable">
+                    <img alt="Azərbaycanda heyvansevərlər üçün ilk və tək sosial şəbəkə" src="@Url.Content($"~/images/{GetMainPic("users", Username)}")" class="cb-img">
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h6 class="cb-title">@user.Username</h6>
+                    </div>
+                    <div class="col-md-12 mt-4">
+                        <span class="date" style="font-size:14px; padding-left:0px;">
+                            <i class="fa fa-calendar orange"></i>
+                            <span class="orange">@SharedLocalizer[$"Account.RegisteredDate"]:</span>
+                            @user.RegisteredDate.ToString("dd.MM.yyyy")
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-md-5 mt-2">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="cb-title">@user.Name</h2>
+                    </div>
+                </div>
+                <div class="row mt-5">
+                    <div class="col-md-12 cb-content">
+                        @{
+                            string content = String.IsNullOrEmpty(user.Info) ? $"<i>{SharedLocalizer[$"Account.{(myAccount ? "AddInfo" : "NoInfo")}"].Value}</i>" : user.Info;
+                        }
+                        <p class="with-break with-dots" id="info-txt-@Model.ID">@Html.Raw(Sanitize(content, myAccount ? new string[] { "a" } : null))</p>
+                        <span style="float:right; display:none;" class="orange clickable show-more" id="show-more-btn-@Model.ID">@SharedLocalizer["ShowMore"]</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        @if (user.BirthDate != null && !user.DOB_Hide)
+                        {
+                            <span class="date" style="font-size:14px; padding-left:0px; float:right;">
+                                <i class="fa fa-calendar orange"></i>
+                                <span class="orange">@SharedLocalizer[$"Account.BirthDate"]</span>
+                                @user.BirthDate.ToString("dd.MM.yyyy")
+                            </span>
+
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <div class="fb-title user-title text-center">
+                            @SharedLocalizer["Account.PostButtons.Title"]:
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-sm-6">
+                                <a class="no-style orange" href="/Ad?username=@Username">
+                                    <div class="button clickable">
+                                        <span>@SharedLocalizer["Account.PostButtons.Ads"]</span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-md-12 col-sm-6">
+                                <a class="no-style orange" href="/Charity?username=@Username">
+                                    <div class="button clickable">
+                                        <span>@SharedLocalizer["Account.PostButtons.Charities"]</span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-md-12 col-sm-12">
+                                <a class="no-style orange" href="/Post?username=@Username">
+                                    <div class="button clickable">
+
+                                        <span>@SharedLocalizer["Account.PostButtons.News"]</span>
+                                    </div>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-md-12 col-sm-12 justify-content-center">
+                <ul class="contacts-list">
+                    @if (contacts?.Phone != null)
+                    {
+                        <li>
+                            <i class="fas fa-mobile-alt orange"></i> @contacts.Phone
+                        </li>
+                    }
+
+                    @if (contacts?.Whatsapp != null)
+                    {
+                        <li>
+                            <i class="fab fa-whatsapp orange"></i> @contacts.Whatsapp
+                        </li>
+                    }
+
+                    @if (contacts?.Facebook != null)
+                    {
+                        <li>
+                            <i class="fab fa-facebook orange"></i> @contacts.Facebook
+                        </li>
+                    }
+
+                    @if (contacts?.Instagram != null)
+                    {
+                        <li>
+                            <i class="fab fa-instagram orange"></i> @contacts.Instagram
+                        </li>
+                    }
+                    @if (!myAccount)
+                    {
+                        <li id="send-msg-btn">
+                            @Html.AntiForgeryToken()
+                            <a class="no-style orange" href="#">
+                                <div class="button clickable send-message-btn" id="receiverId-@user.ID" style="display:inline">
+                                    <i class="far fa-envelope orange"></i>
+                                    <span>@SharedLocalizer["Account.SendMessage"]</span>
+                                </div>
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container modal" id="message-modal">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel">
+                <div class="panel-body container-fluid">
+                    <div class="row row-lg">
+                        <div class="col-lg-12">
+                            <div class="example-wrap">
+                                <h4 class="example-title ">@SharedLocalizer["Account.MessageModal.Title"]</h4>
+                                <div class="example">
+                                    <form id="message-form">
+                                        <textarea class="fb-input fb-textarea" id="message-textarea" placeholder="@SharedLocalizer["Account.MessageModal.Placeholder"]"></textarea>
+                                        <button type="submit" class="button orange clickable" id="message-submit" style="float:right">
+                                            @SharedLocalizer["Send"]
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

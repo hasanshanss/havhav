@@ -1,0 +1,113 @@
+﻿@model string
+
+@{
+    ViewBag.Title = SharedLocalizer["Menu.Account.Index"];
+    string Username = Context.GetCurrentUsername();
+}
+
+@section Content{
+    <div class="row m-auto">
+        <div class="col-md-12 box">
+            <div class="auth-form">
+                <form method="post" asp-antiforgery="true" data-parsley-validate>
+
+                    @Html.AntiForgeryToken()
+                    <div class="col-md-12 text-center">
+                        <h4 class="fb-title">@SharedLocalizer["Security"]</h4>
+                    </div>
+
+                    <p class="fb-title text-center">@SharedLocalizer["ChangeEmail"]:</p>
+
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-12 col-md-6">
+                            <div>
+                                <input type="email" value="@Model" id="email" class="fb-input-text" placeholder="Email..."
+                                       required data-parsley-required-message="@ValidationLocalizer["Required"]"
+                                       data-parsley-type-message="@ValidationLocalizer["Email"]">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-end">
+                        <div class="col-12 col-md-4 col-lg-4">
+                            <input type="submit" data-subject="email" style="width:100%" class="button orange clickable" value="@SharedLocalizer["Edit"]">
+                        </div>
+                    </div>
+                </form>
+
+                <hr />
+
+                <form method="post" asp-antiforgery="true" data-parsley-validate>
+                    <p class="fb-title text-center">@SharedLocalizer["ChangePassword"]:</p>
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-12 col-md-6">
+                            <div>
+                                <input id="password" type="password" class="fb-input-text" placeholder="@SharedLocalizer["Password"]..."
+                                       required data-parsley-required-message="@ValidationLocalizer["Required"]"
+                                       minlength="6" data-parsley-minlength-message="@ValidationLocalizer["PasswordMinLength"]" />
+                                <input type="password" class="fb-input-text" placeholder="@SharedLocalizer["Register.PasswordConfirmation"]..."
+                                       required data-parsley-required-message="@ValidationLocalizer["Required"]"
+                                       data-parsley-equalto="#password" data-parsley-equalto-message="@ValidationLocalizer["PasswordCompare"]" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-end">
+                        <div class="col-12 col-md-4 col-lg-4">
+                            <input type="submit" data-subject="password" style="width:100%" class="button orange clickable" value="@SharedLocalizer["Edit"]">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+}
+
+@section addJs{
+
+    <script>
+        var subject;
+        var af_token = $('input[name=__RequestVerificationToken]').val();
+
+        $("input[type='submit']").on("click", function () {
+            subject = $(this).attr("data-subject");
+        });
+
+        $("form").on("submit", function (e) {
+            e.preventDefault();
+
+            if (!$(this).parsley().validate()) {
+                return;
+            }
+            
+            Swal.fire({
+                title: messages.enter_password,
+                input: 'password',
+                inputAttributes: {
+                    autocapitalize: 'off'
+                },
+                showCancelButton: true,
+                cancelButtonText: messages.cancel,
+                confirmButtonText: messages.accept,
+                showLoaderOnConfirm: true,
+                preConfirm: (op) => {
+
+                    $("#loader").modal({
+                        fadeDuration: 250,
+                        backdrop: 'static',
+                        keyboard: false
+                    });
+
+                    var data = {
+                        op: op,
+                        subject: subject,
+                        data: $("#" + subject).val()
+                    };
+                    AjaxCall("/Account/ChangeSecurityInfo/", af_token, data, true, "", function () {
+                        $(".close-modal").click();
+                    });
+                },
+                allowOutsideClick: () => !Swal.isLoading()
+            });
+            
+        });
+    </script>
+}

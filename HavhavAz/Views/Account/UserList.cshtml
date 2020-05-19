@@ -1,0 +1,28 @@
+﻿@using HavhavAz.Models.UserModels
+@using HavhavAz.Models.ContactsModels
+@model IndexViewModel<User>
+
+@section Content
+    {
+    @if (Model.ModelList != null && Model.ModelList.Count > 0)
+    {
+        @foreach (User user in Model.ModelList)
+        {
+            @Html.DisplayFor(m => user);
+        }
+        <page-link page-model="Model.PageViewModel" url="/Account/@ViewBag.Url@(Context.Request.QueryString.Value)"></page-link>
+    }
+    else
+    {
+        <vc:error-page error="@SharedLocalizer[$"NoResult"].Value"></vc:error-page>
+    }
+}
+
+@section addJs{
+    <script src="~/js/user.js"></script>
+    <script>
+        isAuthenticated = "@User.Identity.IsAuthenticated.ToString().ToLower()" === 'true';
+    </script>
+}
+
+

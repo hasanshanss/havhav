@@ -1,0 +1,65 @@
+﻿@using HavhavAz.Models.UserModels
+@model UserEditModel
+
+@{
+    ViewBag.Title = SharedLocalizer["Menu.Account.Index"];
+    string Username = Context.GetCurrentUsername();
+}
+
+@section Content{
+    <div class="row m-auto">
+        <div class="col-md-12 box">
+            <div class="auth-form">
+                <form method="post" enctype="multipart/form-data" asp-controller="Account" asp-action="Edit" asp-antiforgery="true" data-parsley-validate>
+
+                    <div class="col-md-12 text-center">
+                        <h4 class="fb-title">@SharedLocalizer["Edit"]</h4>
+                    </div>
+
+                    <p class="fb-title text-center">@SharedLocalizer["GeneralInfo"]:</p>
+
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <div class="fb img-box-rounded">
+                                <img alt="Azərbaycanda heyvansevərlər üçün ilk və tək sosial şəbəkə" src=@Url.Content($"~/images/{GetMainPic("users", Username)}") id="main-pic" class="img-autoload" />
+                                <input type="file" class="img-autoload-input" name="Image" id="main-pic-input" style="display: none;" />
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12 text-center">
+                                    <span asp-validation-for="Image"></span>
+                                </div>
+                            </div>
+
+                            <div>
+                                <p class="fb-title text-center">@SharedLocalizer["Register.Birthdate"]:</p>
+                                <input name="BirthDate" value="@Model.BirthDate.ToString("dd.MM.yyyy")" type="text" class="fb-input-text datePicker" />
+                                <span asp-validation-for="BirthDate"></span>
+                                <input type="checkbox" class="switcher" @(Model.DOB_Hide ? "checked" : "") name="DOB_Hide" value="@Model.DOB_Hide">
+                                @SharedLocalizer["Register.DOB_Hide"]
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <p class="fb-title">@SharedLocalizer["About"]:</p>
+                        </div>
+
+                        <div class="col-md-12">
+                            <textarea asp-for="Info" class="fb-input-text fb-textarea" placeholder="@SharedLocalizer["Info"]..."
+                                      data-parsley-maxlength="1000" data-parsley-maxlength-message="@ValidationLocalizer["StringLength", "", 1000]">
+                                        @Model.Info
+                            </textarea>
+                            <span asp-validation-for="Info"></span>
+                        </div>
+                    </div>
+
+                    @Html.EditorFor(m => m.ContactsViewModel)
+
+                    <input type="submit" class="button orange clickable" value="@SharedLocalizer["Save"]">
+                </form>
+            </div>
+        </div>
+    </div>
+}

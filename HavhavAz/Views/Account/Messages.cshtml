@@ -1,0 +1,138 @@
+﻿@using HavhavAz.Models.MessageModels
+@using HavhavAz.Models.UserModels
+@model IndexViewModel<Message>
+
+@{
+    string UserId = Context.GetCurrentUserId().ToString();
+
+    string inbox_query_string = Context.Request.Query["inbox"].ToString();
+    Boolean.TryParse(inbox_query_string, out bool inbox);
+    inbox = String.IsNullOrWhiteSpace(inbox_query_string) || inbox;
+
+    ViewBag.Title = SharedLocalizer["Titles.Messages"];
+}
+
+@section UnderTitle{
+    <div class="col-md-12 text-center m-3">
+        <div class="row justify-content-center">
+            
+                <div class="col-md-4 mb-4 text-md-right pr-md-0">
+                    <a href="Messages" class="no-style button @(inbox ? "white" : "orange") clickable m-2">
+                        @SharedLocalizer["Messages.Inbox"]
+                    </a>
+                </div>
+                <div class="col-md-4 text-md-left pl-md-0 mb-2">
+                    <a href="Messages?inbox=false" class="no-style button @(inbox ? "orange" : "white")  clickable m-2">
+                        @SharedLocalizer["Messages.Outbox"]
+                    </a>
+                </div>
+            
+            </div>
+        </div>
+
+
+}
+
+@section Content{
+    @if (Model.ModelList != null && Model.ModelList.Any())
+    {
+        @Html.AntiForgeryToken()
+        <div id="message-list">
+            @foreach (Message msg in Model.ModelList)
+            {
+                User user = inbox ? msg.Sender : msg.Receiver;
+                <div class="row justify-content-center m-auto message-container">
+                    <div class="col-md-8 box message-box clickable @(msg.IsSeen ? String.Empty : "unseen")" id="msg-@msg.ID">
+                        <input type="hidden" id="receiverId-@msg.ID" value="@user.ID" />
+                        <input type="hidden" id="seenDate-@msg.ID" value="@msg.Date.ToString("dd.MM.yyyy HH:mm")" />
+                        <a href="#" style="text-decoration:none; color: black;">
+                            <div class="row">
+                                <div class="col-3 col-md-2 text-center mt-2">
+                                    <div class="user_avatar">
+                                        <img alt="Azərbaycanda heyvansevərlər üçün ilk və tək sosial şəbəkə" class="img-fluid avatar" id="image-@msg.ID" src=@Url.Content($"~/images/{GetMainPic("users", user.Username)}")>
+                                    </div>
+
+                                </div>
+                                <div class="col-7 col-md-8">
+                                    <div class="nb-content">
+                                        <h2 id="username-@msg.ID">@user.Name</h2>
+                                        <span id="message-@msg.ID" class="text-preview" style="width:250px;">@msg.Content</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 text-right">
+                                    <span class="date" style="font-size:14px">
+                                        <i class="fa fa-calendar orange"></i>
+                                        @msg.Date.ToString("dd.MM.yyyy")
+                                        <i class="far fa-clock orange"></i>
+                                        @msg.Date.ToString("HH:mm")
+                                    </span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="container modal" id="message-modal">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel">
+                        <div class="panel-body container-fluid">
+                            <div class="row row-lg">
+                                @*<div class="col-3 col-md-2 text-center mt-2">
+                                        <div class="user_avatar">
+                                            <img alt="Azərbaycanda heyvansevərlər üçün ilk və tək sosial şəbəkə" class="img-fluid avatar" id="modal-image" src="">
+                                        </div>
+                                    </div>*@
+                                <div class="col-12 col-md-12">
+                                    <div class="nb-content">
+                                        <h2 id="modal-username"></h2>
+                                        <div style="color:gray; text-wrap:normal; overflow-wrap:break-word;" id="modal-message-preview"></div>
+                                        <span class="date mt-2" id="modal-seen-date-box" style="font-size:14px; float:right; display:none;">
+                                            <i class="fas fa-eye"></i>
+                                            <span id="modal-seen-date"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row row-lg">
+                                <div class="col-lg-12">
+                                    <div class="example-wrap">
+                                        @*<h4 class="example-title ">İsmarıc göndər</h4>*@
+                                        <div class="example">
+                                            <form id="message-form">
+                                                <textarea class="fb-input fb-textarea" id="message-textarea" placeholder="Salam, necəsən?"
+                                                          required data-parsley-required-message="@ValidationLocalizer["Required"]"
+                                                          data-parsley-maxlength="2500" data-parsley-maxlength-message="@ValidationLocalizer["StringLength", "", 2500]"></textarea>
+                                                <button class="button orange clickable" id="message-submit" style="float:right">
+                                                    @SharedLocalizer["Send"]
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <page-link page-model="Model.PageViewModel" url="Messages@(Context.Request.QueryString.Value)"></page-link>
+    }
+    else
+    {
+        <vc:error-page error="@SharedLocalizer[$"NoResult"].Value"></vc:error-page>
+    }
+
+
+}
+
+@section addJs{
+    <script src="~/js/user.js"></script>
+    <script>
+        username = "@Context.GetCurrentUserName()";
+        inbox = "@inbox.ToString().ToLower()" === 'true';
+    </script>
+}
+
