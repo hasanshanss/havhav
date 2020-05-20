@@ -1,2 +1,2 @@
 # havhav
-The first social network in Caucasus designed for zoo-lovers :)
+The first social network in Caucasus designed for animal lovers :)
