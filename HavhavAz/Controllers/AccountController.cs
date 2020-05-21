@@ -342,6 +342,13 @@ namespace HavhavAz.Controllers
         [LogAfter(LogActionInfo.LogAction.Login)]
         public async Task<IActionResult> Login(LoginViewModel lvm)
         {
+            var _googleCaptcha = _googleCaptchaService.VerifyToken(lvm.CaptchaToken);
+
+            if (_googleCaptcha.Result.Success && _googleCaptcha.Result.Score <= 0.5)
+            {
+                ModelState.AddModelError("CaptchaToken", _validationLocalizer["InvalidCaptcha"]);
+            }
+
             if (ModelState.IsValid)
             {
                 User user = await _UserManager.GetUserForLoginAsync(lvm.Username, lvm.Password);
@@ -380,7 +387,7 @@ namespace HavhavAz.Controllers
             {
                 string ResetPasswordCode = await _UserManager.UpdateResetPasswordCodeAsync(user);
                 string body = _sharedLocalizer["PasswordReset.MailMessage", user.Name, ResetPasswordCode, Username];
-                Task.Run(() => SendEmail(user.Email, user.Name, _sharedLocalizer["ChangePassword"], body)); 
+                await Task.Run(() => SendEmail(user.Email, user.Name, _sharedLocalizer["ChangePassword"], body)); 
             }
             return Ok();
         }
@@ -409,7 +416,6 @@ namespace HavhavAz.Controllers
         [LogAfter(LogActionInfo.LogAction.ResetPassword)]
         public async Task<ActionResult> ResetPassword(ResetPasswordViewModel rpvm)
         {
-            
             string ErrorMessage = String.Empty;
             User user;
 
@@ -448,7 +454,7 @@ namespace HavhavAz.Controllers
             else
             { 
                 await _UserManager.ChangePasswordAsync(user.ID, rpvm.Password);
-                Task.Run(() => SendEmail(user.Email,
+                await Task.Run(() => SendEmail(user.Email,
                             user.Name,
                             _sharedLocalizer["ChangePassword"],
                             _sharedLocalizer["Security.PasswordChanged"]));

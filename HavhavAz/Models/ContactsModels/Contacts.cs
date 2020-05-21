@@ -15,7 +15,7 @@ namespace HavhavAz.Models.ContactsModels
         [Key]
         public Int32 ID { set; get; }
 
-        [StringLengthWithMin(25, 6)]
+        [StringLengthWithMin(50, 6)]
         public string Facebook { set; get; }
 
         [StringLengthWithMin(25, 6)]

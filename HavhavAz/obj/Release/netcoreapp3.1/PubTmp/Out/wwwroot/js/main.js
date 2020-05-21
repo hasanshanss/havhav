@@ -29,7 +29,6 @@ const notConnection = new signalR.HubConnectionBuilder()
 
 notConnection.start();
 
-
 notConnection.on("Push", function (nvm) {
     
     if (nvm === null) {
@@ -251,8 +250,13 @@ function Confirmation(confirm_action) {
     });
 }
 
-//$("#logout").on("click", function () {
-//    $("#logout-form").submit();
-//});
+$("#logout").on("click", function () {
+    $("#logout-form").submit();
+});
 
 
+$(".show-more").on("click", function () {
+    var id = parseID($(this).attr('id'));
+    $(this).hide();
+    $(`#info-txt-${id}`).removeClass("with-dots");
+});

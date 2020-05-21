@@ -11,7 +11,7 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "Account/Index/nargiz_aliyeva",
+      "launchUrl": "Home",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Production"
       }

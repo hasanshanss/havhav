@@ -29,9 +29,7 @@ namespace HavhavAz.Helpers
         public static IList<SelectListItem> _stateSelectListUser = GenerateStateSelectList(false);
         public static IList<SelectListItem> _languageSelectList = GenerateLanguageSelectList();
         public static State[] _userAccessibleStateList = GetUserAccessibleStateList();
-
         
-
         public static string UploadOneImage(IFormFile imageFile, 
                                             string path, 
                                             string filename = null, 
@@ -184,18 +182,23 @@ namespace HavhavAz.Helpers
                     .ToList();
         }
 
-        public static IList<SelectListItem> GenerateLanguageSelectList(IList<Culture> existedCultures, bool nonFilter = true)
+        public static IList<SelectListItem> GenerateLanguageSelectList(IList<Culture> existedCultures, bool filter = true)
         {
-            return Enum.GetValues(typeof(Culture)).Cast<Culture>()
-                                                  .Select(c => 
-                    new SelectListItem
-                    {
-                        Value = ((byte)c).ToString(),
-                        Text = c.ToString()
-                    })
-                    .Where(m => !nonFilter || !existedCultures.Contains((Culture) Enum.Parse(typeof(Culture), m.Text)) 
-                                && !m.Text.Equals("Neutral"))
-                    .ToList();
+            IList<Culture> cultures = filter ? Enum.GetValues(typeof(Culture)).Cast<Culture>().ToList() : existedCultures;
+            Expression<Func<SelectListItem, bool>> lambda = m => !existedCultures.Contains((Culture)Enum.Parse(typeof(Culture), m.Text)) &&
+                                                           !m.Text.Equals("Neutral");
+
+            IQueryable<SelectListItem> query =  cultures.Select(c =>
+                new SelectListItem
+                {
+                    Value = ((byte)c).ToString(),
+                    Text = c.ToString()
+                }).AsQueryable();
+
+            if (filter)
+                query = query.Where(lambda);
+
+            return query.ToList();
         }
 
         public static IList<SelectListItem> GenerateStateSelectList(bool isAdmin = true)
@@ -239,7 +242,7 @@ namespace HavhavAz.Helpers
         {
             var fromAddress = new MailAddress("support@havhav.az", "Havhav.az");
             var toAddress = new MailAddress(toEmail, toName);
-            const string fromPassword = "s@2510209630p";
+            const string fromPassword = "";
 
             var smtp = new SmtpClient
             {
@@ -288,7 +291,54 @@ namespace HavhavAz.Helpers
             };
         }
 
-      
+        public static string ListImagesAjax(string path,
+                                           byte size = 1,
+                                           bool isEditable = false)
+        {
+            StringBuilder result = new StringBuilder("<div class='row gallery'>");
+            result.Append($"<div class='row' style='width:625px;'>");
+            string directoryPath = $"wwwroot/images/{path}";
+
+            if (Directory.Exists(directoryPath))
+            {
+                foreach (var img in Directory.GetFiles(directoryPath))
+                {
+                    string filename = System.IO.Path.GetFileName(img);
+                    string extension = System.IO.Path.GetExtension(filename).Substring(1);
+
+                    string url = $"/images/{path}/{filename}";
+
+                    result.Append($"<div class='col-md-{size + 1} img-box-{size} clickable' id='{filename}'>");
+                    result.Append((isEditable ? "<span class='img-remove-btn'>&times;</span>" : ""));
+                    result.Append($"<a href={url} class='html5lightbox' data-group='mygroup'>");
+
+                    
+                    if (extension.Equals("jpg", StringComparison.OrdinalIgnoreCase))
+                        result.Append($"<img src={url} class='cb-img-thumb'>");
+                    else
+                    {
+                        result.Append($"<video class='cb-img-thumb' muted autoplay loop>");
+                        result.Append($"<source src={url} type='video/mp4'>");
+                        result.Append("</video>");
+                    }
+
+                    result.Append("</a></div>");
+                }
+            }
+
+            if (isEditable)
+            {
+                result.Append("<div class='col-md-3 gallery-img' id='gallery-img-1'>");
+                result.Append("<div class='img-frame clickable'>");
+                result.Append("<i class='fas fa-plus orange' style='margin-top:30px;'></i>");
+                result.Append("</div></div>");
+            }
+
+            result.Append("</div></div>");
+            return result.ToString();
+        }
+
+
 
     }
 }

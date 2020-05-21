@@ -52,8 +52,8 @@
                 </span>
             </div>
             <input asp-for="Contacts.Facebook" class='fb-input-text form-control' placeholder='Facebook'
-                   data-parsley-maxlength="25" data-parsley-maxlength-message="@ValidationLocalizer["StringLength", "", 25]"
-                   data-parsley-minlength="6" data-parsley-minlength-message="@ValidationLocalizer["StringLengthWithMin", "", 6, 25]"
+                   data-parsley-maxlength="50" data-parsley-maxlength-message="@ValidationLocalizer["StringLength", "", 50]"
+                   data-parsley-minlength="6" data-parsley-minlength-message="@ValidationLocalizer["StringLengthWithMin", "", 6, 50]"
                    data-parsley-errors-container="#facebook-error" />
         </div>
         <span asp-validation-for="Contacts.Facebook"></span>

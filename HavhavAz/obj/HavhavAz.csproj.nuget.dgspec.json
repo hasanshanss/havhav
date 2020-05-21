@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\User\\source\\repos\\havhav.az\\HavhavAz\\HavhavAz.csproj": {}
+    "C:\\Users\\User\\source\\repos\\havhav\\HavhavAz\\HavhavAz.csproj": {}
   },
   "projects": {
-    "C:\\Users\\User\\source\\repos\\havhav.az\\HavhavAz\\HavhavAz.csproj": {
+    "C:\\Users\\User\\source\\repos\\havhav\\HavhavAz\\HavhavAz.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\source\\repos\\havhav.az\\HavhavAz\\HavhavAz.csproj",
+        "projectUniqueName": "C:\\Users\\User\\source\\repos\\havhav\\HavhavAz\\HavhavAz.csproj",
         "projectName": "HavhavAz",
-        "projectPath": "C:\\Users\\User\\source\\repos\\havhav.az\\HavhavAz\\HavhavAz.csproj",
+        "projectPath": "C:\\Users\\User\\source\\repos\\havhav\\HavhavAz\\HavhavAz.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\source\\repos\\havhav.az\\HavhavAz\\obj\\",
+        "outputPath": "C:\\Users\\User\\source\\repos\\havhav\\HavhavAz\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -47,34 +47,34 @@
             },
             "HtmlAgilityPack": {
               "target": "Package",
-              "version": "[1.11.18, )"
+              "version": "[1.11.23, )"
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[3.1.3, )"
+              "version": "[3.1.4, )"
             },
             "Microsoft.EntityFrameworkCore.Relational": {
               "target": "Package",
-              "version": "[3.1.3, )"
+              "version": "[3.1.4, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[3.1.3, )"
+              "version": "[3.1.4, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[3.1.3, )"
+              "version": "[3.1.4, )"
             },
             "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
               "target": "Package",
-              "version": "[1.4.10, )"
+              "version": "[1.10.8, )"
             },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[3.1.2, )"
+              "version": "[3.1.3, )"
             },
             "NLog.Web.AspNetCore": {
               "target": "Package",

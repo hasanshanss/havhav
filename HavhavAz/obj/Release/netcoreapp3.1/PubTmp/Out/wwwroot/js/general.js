@@ -184,8 +184,12 @@ $("select[name='forum-topic']").on("change", function () {
     window.location.replace(updateQueryStringParameter(window.location.href, "fci", this.value));
 });
 
-$("select[name='culture']").on("change", function () {
-    window.location.replace(updateQueryStringParameter(window.location.href, "culture", this.value));
+//$("select[name='culture']").on("change", function () {
+//    window.location.replace(updateQueryStringParameter(window.location.href, "culture", this.value));
+//});
+
+$("#culture-select-list").on("change", function () {
+    window.location.replace(updateQueryStringParameter(window.location.href, "cultureKey", this.value));
 });
 
 $("select[name='state']").on("change", function () {
@@ -257,8 +261,3 @@ function countLines() {
     }
 }
 
-$(".show-more").on("click", function () {
-    var id = parseID($(this).attr('id'));
-    $(this).hide();
-    $(`#info-txt-${id}`).removeClass("with-dots");
-});

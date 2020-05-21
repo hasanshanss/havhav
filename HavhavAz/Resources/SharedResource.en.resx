@@ -580,7 +580,7 @@
     <value>Welcome to Havhav.az :)</value>
   </data>
   <data name="Welcome.Text" xml:space="preserve">
-    <value>&lt;p&gt;Welcome to Havhav.az! Havhav.az is the first, only and largest social network in the Caucasus, designed for zoo lovers! :)
+    <value>&lt;p&gt;Welcome to Havhav.az! Havhav.az is the first, only and largest social network in the Caucasus, designed for animal lovers! :)
 Here you can &lt;a href="/Ad"&gt;share different posts&lt;/a&gt;, get information about &lt;a href="/Shelter"&gt;shelters&lt;/a&gt; and &lt;a href="/Vet"&gt;veterinary clinics&lt;/a&gt;, as well as follow the &lt;a href="/Post"&gt;latest news&lt;/a&gt; about the animal world!&lt;/p&gt;
 &lt;p&gt;In many cases, a certain amount of money is required to help animals. For this, &lt;a href="/Charity"&gt;the site has a special section&lt;/a&gt;. In order to provide maximum transparency, any amount sent will be available to the user in the form of a report (sender's name, amount, photo of receipt, etc.).&lt;/p&gt;
 &lt;p&gt;Also, you can ask or answer questions of any topic relating to animals in a separate section &lt;a href="/Forum"&gt;"Forum"&lt;/a&gt;.
@@ -632,5 +632,8 @@ Thank you! Hav-hav &lt;i class="fas fa-paw" style="color: orange;"&gt;&lt;/i&gt;
   </data>
   <data name="OrderNumber" xml:space="preserve">
     <value>Position</value>
+  </data>
+  <data name="Seo.Keywords" xml:space="preserve">
+    <value>animals, social network, animal lovers, havhav, hasan, shans, cat, dog, kitten, puppy, shelters, veterinary, charity</value>
   </data>
 </root>

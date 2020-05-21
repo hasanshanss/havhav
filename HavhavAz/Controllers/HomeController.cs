@@ -98,7 +98,7 @@ namespace HavhavAz.Controllers
         [HttpPost]
         public string LoadGalleryAjax(string path)
         {
-            return HelperMethods.ListImagesAjax(path);
+            return Utilities.ListImagesAjax(path);
         }
 
     }

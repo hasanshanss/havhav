@@ -29,7 +29,6 @@ const notConnection = new signalR.HubConnectionBuilder()
 
 notConnection.start();
 
-
 notConnection.on("Push", function (nvm) {
     
     if (nvm === null) {

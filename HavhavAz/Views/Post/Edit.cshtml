@@ -15,7 +15,8 @@
 
             <form method="post" enctype="multipart/form-data" asp-controller="Post" asp-action="Edit" asp-antiforgery="true" data-parsley-validate>
 
-                @*<input asp-for="Post.ID" value="@id" />*@
+                <input asp-for="Post.ID"  type="hidden"/>
+                <input asp-for="PostTranslations.ID" type="hidden" />
 
                 <div class="col-md-12 text-center">
                     <h4 class="fb-title">@SharedLocalizer["Edit"]</h4>
@@ -47,18 +48,20 @@
                                 <span asp-validation-for="PostTranslations.Content"></span>
                             </div>
                         </div>
+                        @if (Model.Post.PostType == Post.PostTypes.News)
+                        {
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p class="fb-title">@SharedLocalizer["SelectLanguage"]:</p>
+                                    <select asp-for="PostTranslations.Culture" asp-items="GenerateLanguageSelectList(Model.ExistedCultures, false)" class="fb-input-text" id="culture-select-list"></select>
+                                    <span asp-validation-for="PostTranslations.Culture"></span>
+                                </div>
+                            </div>
+                        }
                     </div>
                 </div>
-                
-                
-                <div class="row">
-                    <div class="col-md-6">
-                        <p class="fb-title">@SharedLocalizer["SelectLanguage"]:</p>
-                        <select asp-for="PostTranslations.Culture" asp-items="GenerateLanguageSelectList(Model.ExistedCultures)" class="fb-input-text"></select>
-                        <span asp-validation-for="PostTranslations.Culture"></span>
-                    </div>
-                </div>
-                
+
+
 
                 <div class="row">
                     <div class="col-md-12 text-right">

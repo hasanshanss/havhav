@@ -1,13 +1,17 @@
 ﻿using HavhavAz.Models;
 using Microsoft.AspNetCore.Authorization.Infrastructure;
+using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading;
 using static HavhavAz.Models.UserModels.User;
+using static HavhavAz.Helpers.Utilities;
+
 
 namespace HavhavAz.Helpers
 {
@@ -115,6 +119,15 @@ namespace HavhavAz.Helpers
                 return request.Headers["X-Requested-With"] == "XMLHttpRequest";
 
             return false;
+        }
+
+        public static HtmlString ListImages(this IHtmlHelper html,
+                                            string path,
+                                            byte size = 1,
+                                            bool isEditable = false)
+        {
+
+            return new HtmlString(ListImagesAjax(path, size, isEditable));
         }
 
         public static bool Contains(this string source, string toCheck, StringComparison comp)

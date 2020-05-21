@@ -3974,7 +3974,6 @@ const notConnection = new signalR.HubConnectionBuilder()
 
 notConnection.start();
 
-
 notConnection.on("Push", function (nvm) {
     
     if (nvm === null) {
@@ -4196,11 +4195,16 @@ function Confirmation(confirm_action) {
     });
 }
 
-//$("#logout").on("click", function () {
-//    $("#logout-form").submit();
-//});
+$("#logout").on("click", function () {
+    $("#logout-form").submit();
+});
 
 
+$(".show-more").on("click", function () {
+    var id = parseID($(this).attr('id'));
+    $(this).hide();
+    $(`#info-txt-${id}`).removeClass("with-dots");
+});
 
 const urlParams = new URLSearchParams(window.location.search);
 const general_state = urlParams.get('state') || 1;
@@ -4388,8 +4392,12 @@ $("select[name='forum-topic']").on("change", function () {
     window.location.replace(updateQueryStringParameter(window.location.href, "fci", this.value));
 });
 
-$("select[name='culture']").on("change", function () {
-    window.location.replace(updateQueryStringParameter(window.location.href, "culture", this.value));
+//$("select[name='culture']").on("change", function () {
+//    window.location.replace(updateQueryStringParameter(window.location.href, "culture", this.value));
+//});
+
+$("#culture-select-list").on("change", function () {
+    window.location.replace(updateQueryStringParameter(window.location.href, "cultureKey", this.value));
 });
 
 $("select[name='state']").on("change", function () {
@@ -4461,11 +4469,6 @@ function countLines() {
     }
 }
 
-$(".show-more").on("click", function () {
-    var id = parseID($(this).attr('id'));
-    $(this).hide();
-    $(`#info-txt-${id}`).removeClass("with-dots");
-});
 
 /** HTML5 LightBox - jQuery Image and Video LightBox Plugin
  * Copyright 2014 Magic Hills Pty Ltd All Rights Reserved

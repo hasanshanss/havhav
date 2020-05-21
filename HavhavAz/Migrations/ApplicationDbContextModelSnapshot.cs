@@ -15,7 +15,7 @@ namespace HavhavAz.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.3")
+                .HasAnnotation("ProductVersion", "3.1.4")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -49,6 +49,11 @@ namespace HavhavAz.Migrations
                     b.Property<bool>("Gender")
                         .HasColumnType("bit");
 
+                    b.Property<string>("Info")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasMaxLength(6000);
+
                     b.Property<DateTime>("LastActionDate")
                         .HasColumnType("datetime2");
 
@@ -70,31 +75,6 @@ namespace HavhavAz.Migrations
                     b.ToTable("Ads");
                 });
 
-            modelBuilder.Entity("HavhavAz.Models.AdModels.AdTranslations", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("AdId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Culture")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Info")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(2000)")
-                        .HasMaxLength(2000);
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("AdId");
-
-                    b.ToTable("AdTranslations");
-                });
-
             modelBuilder.Entity("HavhavAz.Models.CharityModels.Charity", b =>
                 {
                     b.Property<int>("ID")
@@ -105,11 +85,21 @@ namespace HavhavAz.Migrations
                     b.Property<int>("Amount")
                         .HasColumnType("int");
 
+                    b.Property<string>("BankCredentials")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(2000)")
+                        .HasMaxLength(2000);
+
                     b.Property<int>("CollectedAmount")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("Info")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasMaxLength(6000);
 
                     b.Property<DateTime>("LastActionDate")
                         .HasColumnType("datetime2");
@@ -130,36 +120,6 @@ namespace HavhavAz.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Charities");
-                });
-
-            modelBuilder.Entity("HavhavAz.Models.CharityModels.CharityTranslations", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("BankCredentials")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(1500)")
-                        .HasMaxLength(1500);
-
-                    b.Property<int>("CharityId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Culture")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Info")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(2000)")
-                        .HasMaxLength(2000);
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("CharityId");
-
-                    b.ToTable("CharityTranslations");
                 });
 
             modelBuilder.Entity("HavhavAz.Models.CharityModels.Receipt", b =>
@@ -254,8 +214,8 @@ namespace HavhavAz.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Facebook")
-                        .HasColumnType("nvarchar(25)")
-                        .HasMaxLength(25);
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
 
                     b.Property<string>("Instagram")
                         .HasColumnType("nvarchar(25)")
@@ -623,29 +583,11 @@ namespace HavhavAz.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("HavhavAz.Models.AdModels.AdTranslations", b =>
-                {
-                    b.HasOne("HavhavAz.Models.AdModels.Ad", "Ad")
-                        .WithMany("AdTranslations")
-                        .HasForeignKey("AdId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("HavhavAz.Models.CharityModels.Charity", b =>
                 {
                     b.HasOne("HavhavAz.Models.UserModels.User", "User")
                         .WithMany("Charities")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("HavhavAz.Models.CharityModels.CharityTranslations", b =>
-                {
-                    b.HasOne("HavhavAz.Models.CharityModels.Charity", "Charity")
-                        .WithMany("CharityTranslations")
-                        .HasForeignKey("CharityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

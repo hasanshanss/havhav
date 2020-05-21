@@ -221,10 +221,10 @@ namespace HavhavAz.Controllers
         }
 
         [Authorize(Policy="AdminConstraint")]
-        public async Task<ActionResult> Edit(Int32 id)
+        public async Task<ActionResult> Edit(Int32 id, Culture? cultureKey)
         {
             IList<Culture> cultures = await _postTranslateService.GetCulturesListAsync(id);
-            Post post = await _postCrudService.GetModelByIdAsync(id, cultures.First());
+            Post post = await _postCrudService.GetModelByIdAsync(id, cultureKey ?? cultures.First());
             
             if (post == null)
             {

@@ -51,18 +51,19 @@
                                 <span asp-validation-for="PostTranslations.Content"></span>
                             </div>
                         </div>
+                        @if (ptn.Equals("News"))
+                        {
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p class="fb-title">@SharedLocalizer["SelectLanguage"]:</p>
+                                    <select asp-for="PostTranslations.Culture" asp-items="GenerateLanguageSelectList()" class="fb-input-text"></select>
+                                    <span asp-validation-for="PostTranslations.Culture"></span>
+                                </div>
+                            </div>
+                        }
                     </div>
-                </div>
-                @if (ptn.Equals("News"))
-                {
-                    <div class="row">
-                        <div class="col-md-6">
-                            <p class="fb-title">@SharedLocalizer["SelectLanguage"]:</p>
-                            <select asp-for="PostTranslations.Culture" asp-items="GenerateLanguageSelectList()" class="fb-input-text"></select>
-                            <span asp-validation-for="PostTranslations.Culture"></span>
-                        </div>
                     </div>
-                }
+             
 
 
                 <div class="row">
