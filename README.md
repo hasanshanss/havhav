@@ -1,6 +1,5 @@
-# havhav
+# Welcome to Havhav.az - The first social network in Azerbaijan designed for animal lovers and served for pets. 
 
-Welcome to Havhav.az - The first social network in Azerbaijan designed for animal lovers and served for pets. 
 Here you can:
 
 Build Pet Profiles: Showcase your pets with photos and stories.
